@@ -1,0 +1,13 @@
+.profile__add-photo {
+  background: #000;
+  border: 2px solid #FFFFFF;
+  width: 150px;
+  height: 50px;
+  padding: 0;
+  transition: .5s;
+}
+
+.profile__add-photo:hover {
+  opacity: .6;
+  cursor: pointer;
+}

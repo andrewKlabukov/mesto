@@ -1,0 +1,13 @@
+.profile__edit {
+  background: #000;
+  border: 1px solid #FFFFFF;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  transition: .5s;
+}
+
+.profile__edit:hover {
+  opacity: .6;
+  cursor: pointer;
+}
