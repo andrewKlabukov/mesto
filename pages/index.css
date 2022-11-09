@@ -9,5 +9,10 @@
 @import url(../blocks/profile/__user-name/profile__user-name.css);
 @import url(../blocks/profile/__user-info/profile__user-info.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
+@import url(../blocks/card/card.css);
+@import url(../blocks/card/__img/card__img.css);
+@import url(../blocks/card/__desc/card__desc.css);
+@import url(../blocks/gallery/gallery.css);
+
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
