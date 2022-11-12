@@ -4,3 +4,21 @@
   justify-content: space-between;
   margin-top: 40px;
 }
+
+@media screen and (max-width: 780px) {
+  .profile {
+    justify-content: space-evenly;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .profile {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .profile {
+    flex-direction: column;
+  }
+}

@@ -5,6 +5,19 @@
   font-size: 18px;
   line-height: 22px;
   color: #FFFFFF;
-  margin-top: 0;
+  margin-top: 16px;
   margin-bottom: 0;
+}
+
+@media screen and (max-width: 320px) {
+  .profile__user-info {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-bottom: 36px;
+    margin-top: 14px;
+  }
 }

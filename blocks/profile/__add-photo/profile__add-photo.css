@@ -11,3 +11,16 @@
   opacity: .6;
   cursor: pointer;
 }
+
+@media screen and (max-width: 750px) {
+  .profile__add-photo {
+    min-width: 282px;
+    margin-top: 30px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .profile__add-photo {
+    min-width: 282px;
+  }
+}

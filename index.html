@@ -22,11 +22,11 @@
         <img src="./images/avatar.jpg" alt="Аватар" class="profile__avatar">
         <div class="profile__content">
           <p class="profile__user-name">Жак-Ив Кусто</p>
-          <p class="profile__user-info">Исследователь океана</p>        
-        </div>
-        <button class="profile__edit">
-          <img src="./images/buttonImg1.svg" alt="">
-        </button>
+          <button class="profile__edit">
+            <img src="./images/buttonImg1.svg" alt="">
+          </button> 
+          <p class="profile__user-info">Исследователь океана</p>                 
+        </div>       
         <button class="profile__add-photo">
           <img src="./images/plus.svg" alt="">
         </button>
@@ -36,36 +36,42 @@
           <img src="./images/img1.jpg" alt="" class="card__img">
           <div class="card__desc">
             <p class="card__title">Карачаевск</p>
+            <img src="./images/heart.svg" alt="">
           </div>
         </div>
         <div class="card">
           <img src="./images/img2.jpg" alt="" class="card__img">
           <div class="card__desc">
             <p class="card__title">Гора Эльбрус</p>
+            <img src="./images/heart.svg" alt="">
           </div>
         </div>
         <div class="card">
           <img src="./images/img3.jpg" alt="" class="card__img">
           <div class="card__desc">
             <p class="card__title">Домбай</p>
+            <img src="./images/heart.svg" alt="">
           </div>
         </div>
         <div class="card">
           <img src="./images/img2.jpg" alt="" class="card__img">
           <div class="card__desc">
             <p class="card__title">Гора Эльбрус</p>
+            <img src="./images/heart.svg" alt="">
           </div>
         </div>
         <div class="card">
           <img src="./images/img3.jpg" alt="" class="card__img">
           <div class="card__desc">
             <p class="card__title">Домбай</p>
+            <img src="./images/heart.svg" alt="">
           </div>
         </div>
         <div class="card">
           <img src="./images/img1.jpg" alt="" class="card__img">
           <div class="card__desc">
-            <p class="card__title">Карачаево-Ч...</p>
+            <p class="card__title">Карачаево-Черкесия</p>
+            <img src="./images/heart.svg" alt="">
           </div>
         </div>
       </section>
@@ -76,6 +82,18 @@
       </p>
     </footer>
   </div>
+  <section class="popup popup_opened">
+    <div class="popup__conteiner">
+      <button class="popup__close"></button>
+      <div class="popup__content">
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <input class="popup__info username" type="text">
+        <input class="popup__info user-info" type="text">
+        <button class="popup__save-btn">Сохранить</button>
+      </div>
+    </div>
+  </section>
+  <script src="./script/script.js"></script>
 </body>
 </html>
 

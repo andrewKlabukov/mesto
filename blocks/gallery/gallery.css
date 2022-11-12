@@ -2,5 +2,17 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  
+  margin-top: 50px;
+}
+
+@media screen and (max-width: 780px) {
+  .gallery {
+    justify-content: space-evenly;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .gallery {
+    justify-content: center;
+  }
 }
