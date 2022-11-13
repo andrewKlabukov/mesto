@@ -8,6 +8,10 @@
   margin-top: 0;
   margin-bottom: 0;
   display: inline-block;
+  max-width: 300px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 750px) {
@@ -24,5 +28,7 @@
     text-align: center;
     color: #FFFFFF;
     margin-top: 22px;
+    margin-left: 23px;
+    max-width: 200px; 
   }
 }

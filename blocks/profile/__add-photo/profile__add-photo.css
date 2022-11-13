@@ -1,5 +1,8 @@
 .profile__add-photo {
   background: #000;
+  background-image: url(../../../images/plus.svg);
+  background-repeat: no-repeat;
+  background-position: center;
   border: 2px solid #FFFFFF;
   width: 150px;
   height: 50px;
@@ -19,8 +22,8 @@
   }
 }
 
-@media screen and (max-width: 320px) {
-  .profile__add-photo {
-    min-width: 282px;
+@media screen and (max-width: 750px) {
+  .profile__add-photo {   
+    margin-top: -2px;
   }
 }
