@@ -35,9 +35,9 @@ function formSubmitHandler (evt) {
     // Выберите элементы, куда должны быть вставлены значения полей
     
     // Вставьте новые значения с помощью textContent
-    nameInput.value = userName.textContent;
-    jobInput.value = userInfo.textContent;
-
+    userName.textContent = nameInput.value;
+    userInfo.textContent = jobInput.value;
+    
     openPopup();
 }
 
