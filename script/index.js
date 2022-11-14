@@ -5,10 +5,6 @@ let profileClose = popup.querySelector('.popup__close');
 let profileEdit = document.querySelector('.profile__edit');
 let userName = document.querySelector('.profile__user-name');
 let userInfo = document.querySelector('.profile__user-info');
-// let popupSaveBtn = popup.querySelector('.popup__save-btn');
-
-// profileInfo.value = userInfo.textContent;
-// profileUsename.value = userName.textContent;
 
 function openPopup(){
   popup.classList.toggle('popup_opened');
@@ -24,6 +20,9 @@ let formElement = document.querySelector('.popup__content');
 let nameInput = popup.querySelector('.popup__info_user_name');
 let jobInput = popup.querySelector('.popup__info_user_info');
 
+nameInput.value = userName.textContent;
+jobInput.value = userInfo.textContent;
+
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 function formSubmitHandler (evt) {
@@ -36,8 +35,8 @@ function formSubmitHandler (evt) {
     // Выберите элементы, куда должны быть вставлены значения полей
     
     // Вставьте новые значения с помощью textContent
-    userName.textContent = nameInput.value;
-    userInfo.textContent = jobInput.value;
+    nameInput.value = userName.textContent;
+    jobInput.value = userInfo.textContent;
 
     openPopup();
 }
