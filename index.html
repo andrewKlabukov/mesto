@@ -26,49 +26,17 @@
         <button class="profile__add-photo" type="button" aria-label="плюс, добавить фото">          
         </button>
       </section>
-      <section class="gallery">
-        <div class="card">
-          <img src="./images/img1.jpg" alt="Карачаево-Черкесия" class="card__img">
-          <div class="card__desc">
-            <h3 class="card__title">Карачаевск</h3>
-            <button class="card__heart" type="button" aria-label="Лайк"></button>            
+      <section class="gallery">        
+        <template id="temp">
+          <div class="card">
+            <img src="./images/img1.jpg" alt="Карачаево-Черкесия" class="card__img">
+            <div class="card__trash"></div>
+            <div class="card__desc">
+              <h3 class="card__title">Карачаевск</h3>
+              <button class="card__heart" type="button" aria-label="Лайк"></button>            
+            </div>
           </div>
-        </div>
-        <div class="card">
-          <img src="./images/img2.jpg" alt="Гора Эльбрус" class="card__img">
-          <div class="card__desc">
-            <h3 class="card__title">Гора Эльбрус</h3>
-            <button class="card__heart" type="button" aria-label="Лайк"></button> 
-          </div>
-        </div>
-        <div class="card">
-          <img src="./images/img3.jpg" alt="Домбай" class="card__img">
-          <div class="card__desc">
-            <h3 class="card__title">Домбай</h3>
-            <button class="card__heart" type="button" aria-label="Лайк"></button> 
-          </div>
-        </div>
-        <div class="card">
-          <img src="./images/img2.jpg" alt="Гора Эльбрус" class="card__img">
-          <div class="card__desc">
-            <h3 class="card__title">Гора Эльбрус</h3>
-            <button class="card__heart" type="button" aria-label="Лайк"></button> 
-          </div>
-        </div>
-        <div class="card">
-          <img src="./images/img3.jpg" alt="Домбай" class="card__img">
-          <div class="card__desc">
-            <h3 class="card__title">Домбай</h3>
-            <button class="card__heart" type="button" aria-label="Лайк"></button> 
-          </div>
-        </div>
-        <div class="card">
-          <img src="./images/img1.jpg" alt="Карачаево-Черкесия" class="card__img">
-          <div class="card__desc">
-            <h3 class="card__title">Карачаево-Черкесия</h3>
-            <button class="card__heart" type="button" aria-label="Лайк"></button> 
-          </div>
-        </div>
+        </template>        
       </section>
     </main>
     <footer class="footer">
@@ -76,18 +44,24 @@
         © 2020 Mesto Russia
       </p>
     </footer>
-  </div>
+  </di v>
   <section class="popup">
     <div class="popup__conteiner">
       <button class="popup__close" type="button" aria-label="Закрыть всплывающее окно"></button>
       <form class="popup__content" name="popup-form">
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input class="popup__info popup__info_user_name" type="text" name="user-name">
-        <input class="popup__info popup__info_user_info" type="text" name="user-info">
+        <input class="popup__info popup__info_user_name" type="text" name="user-name" placeholder="Введите ваше имя">
+        <input class="popup__info popup__info_user_info" type="text" name="user-info" placeholder="Введите описание">
         <button class="popup__save-btn" type="submit" aria-label="Сохранить">Сохранить</button>
       </form>
     </div>
   </section>
+  <template id="popupPhoto">
+    <div class="popupPhoto__container">
+      <img src="" alt="">
+      <div class="popupPhoto__desc"></div>
+    </div>
+  </template>
   <script src="./script/index.js"></script>
 </body>
 </html>
