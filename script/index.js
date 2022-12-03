@@ -25,6 +25,13 @@ const initialCards = [
   },
 ];
 
+const main = document.querySelector('.gallery');
+const temp = document.querySelector('.temp').content;
+const card = temp.querySelector('.card');
+const title = temp.querySelector('.card__title');
+const cardImg = temp.querySelector('.card__img');
+let insert = temp.cloneNode(true);
+
 const popup = document.querySelector('.popup');
 const profileClose = popup.querySelector('.popup__close');
 const profileEdit = document.querySelector('.profile__edit');
@@ -33,13 +40,17 @@ const userInfo = document.querySelector('.profile__user-info');
 const formElement = document.querySelector('.popup__content');
 const nameInput = popup.querySelector('.popup__info_user_name');
 const jobInput = popup.querySelector('.popup__info_user_info');
-const placesContainer = document.querySelector(".gallery");
-const placeTemplate = document.querySelector("#temp").content;
-const cardLike = document.querySelectorAll('.card__heart');
+const cardLike = main.querySelectorAll('.card__heart');
 const galleryImages = document.querySelectorAll('.card__img');
 const cardImageDelete = document.querySelectorAll('.card__trash');
 const addPhotoBtn = document.querySelector('.profile__add-photo');
-const cardTitle = document.querySelector('.card__title');
+
+initialCards.forEach((item)=>{  
+  insert = temp.cloneNode(true)  
+  title.textContent = item.name;
+  cardImg.src = item.link;  
+  main.append(insert);  
+})
 
 function openPopup(){
   popup.classList.toggle('popup_opened');
@@ -60,20 +71,9 @@ function formSubmitHandler (evt) {
     closePopup();    
 }
 
-function addedPhoto (){  
-  initialCards.forEach((item)=>{    
-    console.log(item)
-    
-    // placesContainer.prepend(placeTemplate)
-
-  })
-}
-
-addedPhoto();
-
-
 cardLike.forEach(item => {
   item.addEventListener('click', event => {
+    console.log('click')
     event.target.classList.toggle('card__heart_like_active')
   })
 })
@@ -98,3 +98,4 @@ formElement.addEventListener('submit', formSubmitHandler);
 
 profileClose.addEventListener('click', closePopup);
 
+console.log(cardLike)
