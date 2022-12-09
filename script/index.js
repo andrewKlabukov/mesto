@@ -27,23 +27,9 @@ const initialCards = [
 
 const main = document.querySelector('.gallery');
 const temp = document.querySelector('.temp').content;
-const card = temp.querySelector('.card');
+let insert = temp.cloneNode(true);
 const title = temp.querySelector('.card__title');
 const cardImg = temp.querySelector('.card__img');
-let insert = temp.cloneNode(true);
-
-const popup = document.querySelector('.popup');
-const profileClose = popup.querySelector('.popup__close');
-const profileEdit = document.querySelector('.profile__edit');
-const userName = document.querySelector('.profile__user-name');
-const userInfo = document.querySelector('.profile__user-info');
-const formElement = document.querySelector('.popup__content');
-const nameInput = popup.querySelector('.popup__info_user_name');
-const jobInput = popup.querySelector('.popup__info_user_info');
-const cardLike = main.querySelectorAll('.card__heart');
-const galleryImages = document.querySelectorAll('.card__img');
-const cardImageDelete = document.querySelectorAll('.card__trash');
-const addPhotoBtn = document.querySelector('.profile__add-photo');
 
 initialCards.forEach((item)=>{  
   insert = temp.cloneNode(true)  
@@ -52,10 +38,31 @@ initialCards.forEach((item)=>{
   main.append(insert);  
 })
 
+
+const card = temp.querySelector('.card');
+const popup = document.querySelector('.popup');
+const profileClose = popup.querySelector('.popup__close');
+const profileEdit = document.querySelector('.profile__edit');
+const userName = document.querySelector('.profile__user-name');
+const userInfo = document.querySelector('.profile__user-info');
+const formElement = document.querySelector('.popup__content');
+const nameInput = popup.querySelector('.popup__info_user_name');
+const jobInput = popup.querySelector('.popup__info_user_info');
+const addPhotoBtn = document.querySelector('.profile__add-photo');
+const cardLike = document.querySelectorAll('.card__heart');
+const cardImageDelete = document.querySelectorAll('.card__trash');
+const galleryImages = document.querySelectorAll('.card__img');
+
 function openPopup(){
   popup.classList.toggle('popup_opened');
   nameInput.value = userName.textContent;
   jobInput.value = userInfo.textContent;
+}
+
+function openAddPhotoPopup(){
+  popup.classList.toggle('popup_opened');
+  nameInput.value = '';
+  jobInput.value = '';
 }
 
 function closePopup(){  
@@ -72,15 +79,15 @@ function formSubmitHandler (evt) {
 }
 
 cardLike.forEach(item => {
-  item.addEventListener('click', event => {
-    console.log('click')
+  item.addEventListener('click', event => {   
     event.target.classList.toggle('card__heart_like_active')
   })
 })
 
 galleryImages.forEach(item => {
-  item.addEventListener('click', event => {    
-    openPopup();   
+  item.addEventListener('click', event => {
+    
+    console.log(event.target.name);
   })
 })
 
@@ -90,7 +97,7 @@ cardImageDelete.forEach(item => {
   })
 })
 
-addPhotoBtn.addEventListener('click', openPopup);
+addPhotoBtn.addEventListener('click', openAddPhotoPopup);
 
 profileEdit.addEventListener('click', openPopup);
 
@@ -98,4 +105,3 @@ formElement.addEventListener('submit', formSubmitHandler);
 
 profileClose.addEventListener('click', closePopup);
 
-console.log(cardLike)
