@@ -27,16 +27,7 @@
         </button>
       </section>
       <section class="gallery">        
-        <template id="temp" class="temp">
-          <div class="card">
-            <img src="" alt="Карачаево-Черкесия" class="card__img">
-            <div class="card__trash"></div>
-            <div class="card__desc">
-              <h3 class="card__title"></h3>
-              <button class="card__heart" type="button" aria-label="Лайк"></button>            
-            </div>
-          </div>
-        </template>        
+               
       </section>
     </main>
     <footer class="footer">
@@ -44,7 +35,7 @@
         © 2020 Mesto Russia
       </p>
     </footer>
-  </di v>
+  </div>
   <section class="popup">
     <div class="popup__conteiner">
       <button class="popup__close" type="button" aria-label="Закрыть всплывающее окно"></button>
@@ -55,7 +46,17 @@
         <button class="popup__save-btn" type="submit" aria-label="Сохранить">Сохранить</button>
       </form>
     </div>
-  </section>  
+  </section>
+  <template id="temp" class="temp">
+    <div class="card">
+      <img src="" alt="" class="card__img">
+      <div class="card__trash"></div>
+      <div class="card__desc">
+        <h3 class="card__title"></h3>
+        <button class="card__heart" type="button" aria-label="Лайк"></button>            
+      </div>
+    </div>
+  </template> 
   <script src="./script/index.js"></script>
 </body>
 </html>

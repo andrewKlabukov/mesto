@@ -23,14 +23,17 @@ const initialCards = [
     name: 'Байкал',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  },
 ];
 
 const main = document.querySelector('.gallery');
-const temp = document.querySelector('.temp').content;
+const temp = document.querySelector('#temp').content;
 const card = temp.querySelector('.card');
 const title = temp.querySelector('.card__title');
 const cardImg = temp.querySelector('.card__img');
-let insert = temp.cloneNode(true);
 
 const popup = document.querySelector('.popup');
 const profileClose = popup.querySelector('.popup__close');
@@ -40,15 +43,16 @@ const userInfo = document.querySelector('.profile__user-info');
 const formElement = document.querySelector('.popup__content');
 const nameInput = popup.querySelector('.popup__info_user_name');
 const jobInput = popup.querySelector('.popup__info_user_info');
-const cardLike = main.querySelectorAll('.card__heart');
-const galleryImages = document.querySelectorAll('.card__img');
-const cardImageDelete = document.querySelectorAll('.card__trash');
+
+
 const addPhotoBtn = document.querySelector('.profile__add-photo');
 
 initialCards.forEach((item)=>{  
-  insert = temp.cloneNode(true)  
+  
+  let insert = temp.cloneNode(true);  
   title.textContent = item.name;
-  cardImg.src = item.link;  
+  cardImg.src = item.link;
+  console.log(title.textContent)  
   main.append(insert);  
 })
 
@@ -71,18 +75,25 @@ function formSubmitHandler (evt) {
     closePopup();    
 }
 
+const cardLike = document.querySelectorAll('.card__heart');
+
 cardLike.forEach(item => {
+  console.log('like')
   item.addEventListener('click', event => {
     console.log('click')
     event.target.classList.toggle('card__heart_like_active')
   })
 })
 
+const galleryImages = document.querySelectorAll('.card__img');
+
 galleryImages.forEach(item => {
   item.addEventListener('click', event => {    
     openPopup();   
   })
 })
+
+const cardImageDelete = document.querySelectorAll('.card__trash');
 
 cardImageDelete.forEach(item => {
   item.addEventListener('click', event => {
@@ -97,5 +108,3 @@ profileEdit.addEventListener('click', openPopup);
 formElement.addEventListener('submit', formSubmitHandler);
 
 profileClose.addEventListener('click', closePopup);
-
-console.log(cardLike)
