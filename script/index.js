@@ -77,10 +77,8 @@ function formSubmitHandler (evt) {
 
 const cardLike = document.querySelectorAll('.card__heart');
 
-cardLike.forEach(item => {
-  console.log('like')
-  item.addEventListener('click', event => {
-    console.log('click')
+cardLike.forEach(item => {  
+  item.addEventListener('click', event => {    
     event.target.classList.toggle('card__heart_like_active')
   })
 })
