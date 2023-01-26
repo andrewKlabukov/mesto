@@ -1,0 +1,12 @@
+.popupImg__conteiner {
+  display: flex;
+  align-items: center;
+  background: #fff;
+  justify-content: center;
+  max-width: 500px;
+  margin: auto auto;
+  border-radius: 10px;
+  min-width: 430px;
+  min-height: 330px;
+  position: relative;
+}

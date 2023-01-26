@@ -27,10 +27,8 @@ const initialCards = [
 
 const main = document.querySelector('.gallery');
 const temp = document.querySelector('#temp').content;
-const card = temp.querySelector('.card');
 const title = temp.querySelector('.card__title');
 const cardImg = temp.querySelector('.card__img');
-
 const popup = document.querySelector('.popup');
 const profileClose = popup.querySelector('.popup__close');
 const profileEdit = document.querySelector('.profile__edit');
@@ -39,9 +37,9 @@ const userInfo = document.querySelector('.profile__user-info');
 const formElement = document.querySelector('.popup__content');
 const nameInput = popup.querySelector('.popup__info_user_name');
 const jobInput = popup.querySelector('.popup__info_user_info');
-
-
+const popupImg = document.querySelector('.popupImg');
 const addPhotoBtn = document.querySelector('.profile__add-photo');
+const popupAddImg = document.querySelector('.popup__addimg');
 
 initialCards.forEach((item)=>{  
   
@@ -65,6 +63,7 @@ function openAddPhotoPopup(){
 
 function closePopup(){  
   popup.classList.remove('popup_opened');  
+  popupImg.classList.remove('popup_opened');  
 }
 
 function formSubmitHandler (evt) {
@@ -85,10 +84,13 @@ cardLike.forEach(item => {
 })
 
 const galleryImages = document.querySelectorAll('.card__img');
+const popupImgItem = document.querySelector('.popupImg__img');
 
 galleryImages.forEach(item => {
   item.addEventListener('click', event => {
-   console.log(event.target.src)
+    popupImg.classList.toggle('popup_opened');
+    popupImgItem.src = event.target.src
+    console.log(event.target)    
   })
 })
 
@@ -107,3 +109,13 @@ profileEdit.addEventListener('click', openPopup);
 formElement.addEventListener('submit', formSubmitHandler);
 
 profileClose.addEventListener('click', closePopup);
+
+
+const card = temp.querySelectorAll('.card');
+
+card.forEach(item => {   
+  item.addEventListener('click', event => {
+    console.log(event.target);
+  })
+})
+
