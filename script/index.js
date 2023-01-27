@@ -27,14 +27,10 @@ const initialCards = [
 
 const main = document.querySelector('.gallery');
 const temp = document.querySelector('#temp').content;
-// const popup = document.querySelector('.popup');
-// const profileClose = popup.querySelector('.popup__close');
 const profileEdit = document.querySelector('.profile__edit');
 const userName = document.querySelector('.profile__user-name');
 const userInfo = document.querySelector('.profile__user-info');
 const formElement = document.querySelector('.popup__content');
-
-const popupImg = document.querySelector('.popupImg');
 const addPhotoBtn = document.querySelector('.profile__add-photo');
 
 // Добавление карточки
@@ -43,13 +39,12 @@ const addImageClose = popupAddImg.querySelector('.popup__close');
 const placeInput = popupAddImg.querySelector('.popup__info_place_name');
 const linkInput = popupAddImg.querySelector('.popup__info_link');
 const addImageForm = popupAddImg.querySelector('form');
+
 addImageForm.addEventListener('submit', e=>{
   e.preventDefault();
   const name = placeInput.value;
   const link = linkInput.value;
   let item ={name, link};
-  //let card = temp.cloneNode(true);
-  //drawCard(card, item);
   drawCards(item)
   closePopup(popupAddImg);
 })
@@ -62,30 +57,34 @@ const jobInput = popupEditUser.querySelector('.popup__info_user_info');
 
 function drawCard(card, item) {
   const title = card.querySelector('.card__title');
-    const cardImg = card.querySelector('.card__img'); 
-    title.textContent = item.name;
-    cardImg.src = item.link;
-    const cardLike = card.querySelector('.card__heart');
-    cardLike.addEventListener('click', event => {    
-      event.target.classList.toggle('card__heart_like_active')
-    })
-    const cardImageDelete = card.querySelector('.card__trash');
-    cardImageDelete.addEventListener('click', event => {
-      event.target.parentElement.remove();
-    })
-    main.append(card);
+  const cardImg = card.querySelector('.card__img'); 
+  title.textContent = item.name;
+  cardImg.src = item.link;
+    
+  const cardLike = card.querySelector('.card__heart');
+  cardLike.addEventListener('click', event => {    
+    event.target.classList.toggle('card__heart_like_active')
+  })
+  
+  const cardImageDelete = card.querySelector('.card__trash');
+  cardImageDelete.addEventListener('click', event => {
+    event.target.parentElement.remove();
+  })
+  
+  main.append(card);
 }
 
 function drawCards(card) {
-    const cards = card ? [card, ...initialCards] : initialCards;
-    if (card){
-      main.innerHTML = '';
-    }
-    cards.forEach((item)=>{     
+  const cards = card ? [card, ...initialCards] : initialCards;
+  if (card){
+    main.innerHTML = '';
+  }
+  cards.forEach((item)=>{     
     let card = temp.cloneNode(true);
     drawCard(card, item);
   })
 }
+
 drawCards();
 
 function openPopup(popup){
@@ -106,37 +105,27 @@ function closePopup(popup){
 }
 
 function formSubmitHandler (evt) {
-    evt.preventDefault();
+  evt.preventDefault();
 
-    userName.textContent = nameInput.value;
-    userInfo.textContent = jobInput.value;
+  userName.textContent = nameInput.value;
+  userInfo.textContent = jobInput.value;
     
-    closePopup();    
+  closePopup();    
 }
 
-
-// cardLike.forEach(item => {  
-//   item.addEventListener('click', event => {    
-//     event.target.classList.toggle('card__heart_like_active')
-//   })
-// })
-
 const galleryImages = document.querySelectorAll('.card__img');
+const popupImg = document.querySelector('.popupImg');
 const popupImgItem = document.querySelector('.popupImg__img');
 
 galleryImages.forEach(item => {
   item.addEventListener('click', event => {
+    console.log('123456')
     popupImg.classList.toggle('popup_opened');
     popupImgItem.src = event.target.src
-    console.log(event.target)    
+    // console.log(event.target)
+     
   })
 })
-
-// cardImageDelete.forEach(item => {
-//   item.addEventListener('click', event => {
-//     event.target.parentElement.remove();
-//   })
-// })
 
 addPhotoBtn.addEventListener('click', () => openAddPhotoPopup(popupAddImg));
 
@@ -147,13 +136,3 @@ formElement.addEventListener('submit', formSubmitHandler);
 profileClose.addEventListener('click', () => closePopup(popupEditUser));
 
 addImageClose.addEventListener('click', () => closePopup(popupAddImg));
-
-
-const card = temp.querySelectorAll('.card');
-
-card.forEach(item => {   
-  item.addEventListener('click', event => {
-    console.log(event.target);
-  })
-})
-
