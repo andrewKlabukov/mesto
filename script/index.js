@@ -38,7 +38,7 @@ const popupImg = document.querySelector('.popupImg');
 const addPhotoBtn = document.querySelector('.profile__add-photo');
 
 // Добавление карточки
-const popupAddImg = document.querySelector('.popup__addimg');
+const popupAddImg = document.querySelector('.addimg');
 const addImageClose = popupAddImg.querySelector('.popup__close');
 const placeInput = popupAddImg.querySelector('.popup__info_place_name');
 const linkInput = popupAddImg.querySelector('.popup__info_link');
@@ -55,7 +55,7 @@ addImageForm.addEventListener('submit', e=>{
 })
 
 // работа с окном пользователя
-const popupEditUser = document.querySelector('.popup__edituser');
+const popupEditUser = document.querySelector('.edituser');
 const profileClose = popupEditUser.querySelector('.popup__close');
 const nameInput = popupEditUser.querySelector('.popup__info_user_name');
 const jobInput = popupEditUser.querySelector('.popup__info_user_info');
