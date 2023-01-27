@@ -27,8 +27,6 @@ const initialCards = [
 
 const main = document.querySelector('.gallery');
 const temp = document.querySelector('#temp').content;
-const title = temp.querySelector('.card__title');
-const cardImg = temp.querySelector('.card__img');
 const popup = document.querySelector('.popup');
 const profileClose = popup.querySelector('.popup__close');
 const profileEdit = document.querySelector('.profile__edit');
@@ -40,10 +38,13 @@ const jobInput = popup.querySelector('.popup__info_user_info');
 const popupImg = document.querySelector('.popupImg');
 const addPhotoBtn = document.querySelector('.profile__add-photo');
 const popupAddImg = document.querySelector('.popup__addimg');
+const popupEditUser = document.querySelector('.popup__edituser');
 
 initialCards.forEach((item)=>{  
   
-  let insert = temp.cloneNode(true);  
+  let insert = temp.cloneNode(true);
+  const title = insert.querySelector('.card__title');
+  const cardImg = insert.querySelector('.card__img'); 
   title.textContent = item.name;
   cardImg.src = item.link;    
   main.append(insert);  
