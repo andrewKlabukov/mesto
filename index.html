@@ -5,6 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
+  <script src="./script/index.js" defer></script>
   <title>Mesto</title>
 </head>
 <body>
@@ -60,11 +61,18 @@
   </section>
   <section class="popup popupImg">
     <div class="popupImg__conteiner">
+      <button class="popup__close" type="button" aria-label="Закрыть всплывающее окно"></button>              
+        <img class="popupImg__img" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="Пейзаж">
+        <h2 class="popupImg__title">Новое место</h2>      
+    </div>
+  </section>
+  <!-- <section class="popup popupImg">
+    <div class="popupImg__conteiner">
       <button class="popup__close" type="button" aria-label="Закрыть всплывающее окно"></button>
       <img class="popupImg__img" src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="картинка природы">
       <h3 class="popupImg__title"></h3>
     </div>
-  </section>
+  </section> -->
   <template id="temp" class="temp">
     <div class="card">
       <img src="https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg" alt="Пейзаж" class="card__img">
@@ -74,8 +82,7 @@
         <button class="card__heart" type="button" aria-label="Лайк"></button>            
       </div>
     </div>
-  </template> 
-  <script src="./script/index.js"></script>
+  </template>  
 </body>
 </html>
 

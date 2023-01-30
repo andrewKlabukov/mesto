@@ -39,6 +39,10 @@ const addImageClose = popupAddImg.querySelector('.popup__close');
 const placeInput = popupAddImg.querySelector('.popup__info_place_name');
 const linkInput = popupAddImg.querySelector('.popup__info_link');
 const addImageForm = popupAddImg.querySelector('form');
+const showImg = document.querySelector('.popupImg');
+showImg.querySelector('.popup__close').addEventListener('click', event => {
+  closePopup(showImg);
+})
 
 addImageForm.addEventListener('submit', e=>{
   e.preventDefault();
@@ -63,7 +67,7 @@ function drawCard(card, item) {
     
   const cardLike = card.querySelector('.card__heart');
   cardLike.addEventListener('click', event => {    
-    event.target.classList.toggle('card__heart_like_active')
+    event.target.classList.toggle('card__heart_like_active');
   })
   
   const cardImageDelete = card.querySelector('.card__trash');
@@ -71,6 +75,13 @@ function drawCard(card, item) {
     event.target.parentElement.remove();
   })
   
+  const image = card.querySelector('img');
+  image.addEventListener('click', event => {
+    showImg.querySelector('h2').textContent = item.name;
+    showImg.querySelector('img').setAttribute('src', item.link);
+    openPopup(showImg);
+  })
+
   main.append(card);
 }
 
@@ -101,7 +112,6 @@ function openAddPhotoPopup(popup){
 
 function closePopup(popup){  
   popup.classList.remove('popup_opened');  
-  popupImg.classList.remove('popup_opened');  
 }
 
 function formSubmitHandler (evt) {
@@ -113,19 +123,19 @@ function formSubmitHandler (evt) {
   closePopup();    
 }
 
-const galleryImages = document.querySelectorAll('.card__img');
-const popupImg = document.querySelector('.popupImg');
-const popupImgItem = document.querySelector('.popupImg__img');
+// const galleryImages = document.querySelectorAll('.card__img');
 
-galleryImages.forEach(item => {
-  item.addEventListener('click', event => {
-    console.log('123456')
-    popupImg.classList.toggle('popup_opened');
-    popupImgItem.src = event.target.src
-    // console.log(event.target)
+// const popupImgItem = document.querySelector('.popupImg__img');
+
+// galleryImages.forEach(item => {
+//   item.addEventListener('click', event => {
+//     console.log('123456')
+//     popupImg.classList.toggle('popup_opened');
+//     popupImgItem.src = event.target.src
+//     // console.log(event.target)
      
-  })
-})
+//   })
+// })
 
 addPhotoBtn.addEventListener('click', () => openAddPhotoPopup(popupAddImg));
 
