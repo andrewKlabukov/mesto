@@ -16,12 +16,14 @@ const showImg = document.querySelector('.popupImg');
 const cardImgTitle = showImg.querySelector('h2');
 const cardImgShow = showImg.querySelector('img');
 
+
 imageFormAdd.addEventListener('submit', e=>{
   e.preventDefault();
   const name = placeInput.value;
   const link = linkInput.value;
   const item ={name, link};
-  drawCards(item)
+  drawCards(item);
+  imageFormAdd.reset();
   closePopup(popupAddImg);
 })
 
@@ -30,6 +32,7 @@ const popupEditUser = document.querySelector('.edit-user');
 const profileClose = popupEditUser.querySelector('.popup__close');
 const nameInput = popupEditUser.querySelector('.popup__info_user_name');
 const jobInput = popupEditUser.querySelector('.popup__info_user_info');
+const userEditForm = popupEditUser.querySelector('form');
 
 function appendCard(item) {
   const card = cardTemplate.cloneNode(true);
@@ -70,15 +73,7 @@ function drawCards(card) {
 drawCards();
 
 function openPopup(popup){
-  popup.classList.toggle('popup_opened');
-  nameInput.value = userName.textContent;
-  jobInput.value = userInfo.textContent;
-}
-
-function openAddPhotoPopup(popup){
-  popup.classList.toggle('popup_opened');
-  nameInput.value = '';
-  jobInput.value = '';
+  popup.classList.toggle('popup_opened');  
 }
 
 function closePopup(popup){  
@@ -90,6 +85,8 @@ function handleProfileFormSubmit (evt) {
 
   userName.textContent = nameInput.value;
   userInfo.textContent = jobInput.value;
+  userEditForm.reset();
+
     
   closePopup(popupEditUser);    
 }
@@ -98,10 +95,13 @@ showImg.querySelector('.popup__close').addEventListener('click', event => {
   closePopup(showImg);
 });
 
-photoBtnAdd.addEventListener('click', () => openAddPhotoPopup(popupAddImg));
+photoBtnAdd.addEventListener('click', () => openPopup(popupAddImg));
 
-profileEdit.addEventListener('click', () => openPopup(popupEditUser));
-
+profileEdit.addEventListener('click', () => {  
+    nameInput.value = userName.textContent;
+    jobInput.value = userInfo.textContent;
+    openPopup(popupEditUser);
+});
 formElement.addEventListener('submit', handleProfileFormSubmit);
 
 profileClose.addEventListener('click', () => closePopup(popupEditUser));
