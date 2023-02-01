@@ -31,7 +31,8 @@ const profileClose = popupEditUser.querySelector('.popup__close');
 const nameInput = popupEditUser.querySelector('.popup__info_user_name');
 const jobInput = popupEditUser.querySelector('.popup__info_user_info');
 
-function drawCard(card, item) {
+function appendCard(item) {
+  const card = cardTemplate.cloneNode(true);
   const title = card.querySelector('.card__title');
   const cardImg = card.querySelector('.card__img'); 
   title.textContent = item.name;
@@ -63,10 +64,7 @@ function drawCards(card) {
   if (card){
     cardsContainer.innerHTML = '';
   }
-  cards.forEach((item)=>{     
-    const card = cardTemplate.cloneNode(true);
-    drawCard(card, item);
-  })
+  cards.forEach(appendCard)
 }
 
 drawCards();
