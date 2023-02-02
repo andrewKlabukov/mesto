@@ -3,19 +3,18 @@ const cardTemplate = document.querySelector('#temp').content;
 const profileEdit = document.querySelector('.profile__edit');
 const userName = document.querySelector('.profile__user-name');
 const userInfo = document.querySelector('.profile__user-info');
-const formElement = document.querySelector('.popup__content');
+const profileForm = document.querySelector('.popup__content_type_user');
 const photoBtnAdd = document.querySelector('.profile__add-photo');
 
 // Добавление карточки
-const popupAddImg = document.querySelector('.addimg');
+const popupAddImg = document.querySelector('.popup_type_add-img');
 const imageAddClose = popupAddImg.querySelector('.popup__close');
 const placeInput = popupAddImg.querySelector('.popup__info_place_name');
 const linkInput = popupAddImg.querySelector('.popup__info_link');
 const imageFormAdd = popupAddImg.querySelector('form');
-const showImg = document.querySelector('.popupImg');
+const showImg = document.querySelector('.popup_type_img');
 const cardImgTitle = showImg.querySelector('h2');
 const cardImgShow = showImg.querySelector('img');
-
 
 imageFormAdd.addEventListener('submit', e=>{
   e.preventDefault();
@@ -28,7 +27,7 @@ imageFormAdd.addEventListener('submit', e=>{
 })
 
 // работа с окном пользователя
-const popupEditUser = document.querySelector('.edit-user');
+const popupEditUser = document.querySelector('.popup_type_user');
 const profileClose = popupEditUser.querySelector('.popup__close');
 const nameInput = popupEditUser.querySelector('.popup__info_user_name');
 const jobInput = popupEditUser.querySelector('.popup__info_user_info');
@@ -50,14 +49,18 @@ function appendCard(item) {
   const cardImageDelete = card.querySelector('.card__trash');
   cardImageDelete.addEventListener('click', event => {
     event.target.closest('.card').remove();
+    itemByCard.delete(card);
   })
   
   const image = card.querySelector('img');
   image.addEventListener('click', event => {
     cardImgTitle.textContent = item.name;
     cardImgShow.setAttribute('src', item.link);
+    cardImgShow.setAttribute('alt', item.name);
     openPopup(showImg);
   })
+
+  itemByCard.set(card, item)
 
   cardsContainer.append(card);
 }
@@ -102,7 +105,8 @@ profileEdit.addEventListener('click', () => {
     jobInput.value = userInfo.textContent;
     openPopup(popupEditUser);
 });
-formElement.addEventListener('submit', handleProfileFormSubmit);
+
+profileForm.addEventListener('submit', handleProfileFormSubmit);
 
 profileClose.addEventListener('click', () => closePopup(popupEditUser));
 
