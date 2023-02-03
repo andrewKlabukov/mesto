@@ -21,7 +21,8 @@ imageFormAdd.addEventListener('submit', e=>{
   const name = placeInput.value;
   const link = linkInput.value;
   const item ={name, link};
-  drawCards(item);
+  const card = createdCard(item);
+  cardsContainer.prepend(card);  
   imageFormAdd.reset();
   closePopup(popupAddImg);
 })
@@ -33,7 +34,7 @@ const nameInput = popupEditUser.querySelector('.popup__info_user_name');
 const jobInput = popupEditUser.querySelector('.popup__info_user_info');
 const userEditForm = popupEditUser.querySelector('form');
 
-function appendCard(item) {
+function createdCard(item) {
   const card = cardTemplate.cloneNode(true);
   const title = card.querySelector('.card__title');
   const cardImg = card.querySelector('.card__img'); 
@@ -48,8 +49,7 @@ function appendCard(item) {
   
   const cardImageDelete = card.querySelector('.card__trash');
   cardImageDelete.addEventListener('click', event => {
-    event.target.closest('.card').remove();
-    itemByCard.delete(card);
+    event.target.closest('.card').remove();    
   })
   
   const image = card.querySelector('img');
@@ -60,20 +60,10 @@ function appendCard(item) {
     openPopup(showImg);
   })
 
-  itemByCard.set(card, item)
-
-  cardsContainer.append(card);
+  return card;
 }
 
-function drawCards(card) {
-  const cards = card ? [card, ...initialCards] : initialCards;
-  if (card){
-    cardsContainer.innerHTML = '';
-  }
-  cards.forEach(appendCard)
-}
-
-drawCards();
+initialCards.map(createdCard).forEach(card => cardsContainer.appendChild(card));
 
 function openPopup(popup){
   popup.classList.toggle('popup_opened');  
