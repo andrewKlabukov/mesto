@@ -34,6 +34,13 @@ const nameInput = popupEditUser.querySelector('.popup__info_user_name');
 const jobInput = popupEditUser.querySelector('.popup__info_user_info');
 const userEditForm = popupEditUser.querySelector('form');
 
+const handleEscKeyup = (event) => {  
+  if (event.key === 'Escape') {
+    const activePopup = document.querySelector('.popup_opened');
+    closePopup(activePopup);
+  }
+}
+
 function createCard(item) {
   const card = cardTemplate.cloneNode(true);
   const title = card.querySelector('.card__title');
@@ -101,3 +108,5 @@ profileForm.addEventListener('submit', handleProfileFormSubmit);
 profileClose.addEventListener('click', () => closePopup(popupEditUser));
 
 imageAddClose.addEventListener('click', () => closePopup(popupAddImg));
+
+document.addEventListener('keyup', handleEscKeyup);
