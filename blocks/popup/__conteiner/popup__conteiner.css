@@ -1,9 +1,9 @@
 .popup__conteiner {
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
   justify-content: center;
   max-width: 500px;
-  margin: auto auto;  
+  margin: auto auto;
   position: relative;
 
 }
