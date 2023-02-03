@@ -21,7 +21,7 @@ imageFormAdd.addEventListener('submit', e=>{
   const name = placeInput.value;
   const link = linkInput.value;
   const item ={name, link};
-  const card = createdCard(item);
+  const card = createCard(item);
   cardsContainer.prepend(card);  
   imageFormAdd.reset();
   closePopup(popupAddImg);
@@ -34,7 +34,7 @@ const nameInput = popupEditUser.querySelector('.popup__info_user_name');
 const jobInput = popupEditUser.querySelector('.popup__info_user_info');
 const userEditForm = popupEditUser.querySelector('form');
 
-function createdCard(item) {
+function createCard(item) {
   const card = cardTemplate.cloneNode(true);
   const title = card.querySelector('.card__title');
   const cardImg = card.querySelector('.card__img'); 
@@ -63,7 +63,7 @@ function createdCard(item) {
   return card;
 }
 
-initialCards.map(createdCard).forEach(card => cardsContainer.appendChild(card));
+initialCards.map(createCard).forEach(card => cardsContainer.appendChild(card));
 
 function openPopup(popup){
   popup.classList.toggle('popup_opened');  
