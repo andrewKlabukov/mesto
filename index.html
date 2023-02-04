@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
   <script src="./script/cards.js"></script>
+  <script src="./script/validate.js"></script>
   <script src="./script/index.js" defer></script>
   <title>Mesto</title>
 </head>
@@ -41,22 +42,26 @@
   <section class="popup popup_type_user">
     <div class="popup__conteiner">
       <button class="popup__close" type="button" aria-label="Закрыть всплывающее окно"></button>
-      <form class="popup__content popup__content_type_user" name="popup-form">
+      <form class="popup__content popup__content_type_user" name="popup-form" novalidate>
         <h2 class="popup__title">Редактировать профиль</h2>
-        <input class="popup__info popup__info_user_name" type="text" name="user-name" placeholder="Введите ваше имя">
-        <input class="popup__info popup__info_user_info" type="text" name="user-info" placeholder="Введите описание">
-        <button class="popup__save-btn" type="submit" aria-label="Сохранить">Сохранить</button>
+        <input class="popup__info popup__info_user_name" type="text" name="user-name" placeholder="Введите ваше имя" minlength="2" maxlength="40" required>
+        <span class="popup__input-error input-name-error popup__input-error_active">123456</span>
+        <input class="popup__info popup__info_user_info" type="text" name="user-info" placeholder="Введите описание" minlength="2" maxlength="200" required>
+        <span class="popup__input-error input-about-error popup__input-error_active">123456</span>
+        <button class="popup__save-btn popup__save-btn_inactive" type="submit" aria-label="Сохранить">Сохранить</button>
       </form>
     </div>
   </section>
   <section class="popup popup_type_add-img">
     <div class="popup__conteiner">
       <button class="popup__close" type="button" aria-label="Закрыть всплывающее окно"></button>
-      <form class="popup__content" name="popup-form">
+      <form class="popup__content" name="popup-form" novalidate>
         <h2 class="popup__title">Новое место</h2>
-        <input class="popup__info popup__info_place_name" type="text" name="user-name" placeholder="Введите название места">
-        <input class="popup__info popup__info_link" type="text" name="user-info" placeholder="Введите ссылку">
-        <button class="popup__save-btn" type="submit" aria-label="Сохранить">Сохранить</button>
+        <input class="popup__info popup__info_place_name" type="text" name="user-name" placeholder="Введите название места" minlength="2" maxlength="30" required>
+        <span class="popup__input-error input-img-title-error popup__input-error_active">123456</span>
+        <input class="popup__info popup__info_link" type="url" name="user-info" placeholder="Введите ссылку">
+        <span class="popup__input-error input-link-error popup__input-error_active" required>123456</span>
+        <button class="popup__save-btn popup__save-btn_inactive" type="submit" aria-label="Сохранить">Сохранить</button>
       </form>
     </div>
   </section>

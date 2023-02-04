@@ -15,6 +15,7 @@ const imageFormAdd = popupAddImg.querySelector('form');
 const showImg = document.querySelector('.popup_type_img');
 const cardImgTitle = showImg.querySelector('h2');
 const cardImgShow = showImg.querySelector('img');
+const popupList = document.querySelectorAll('.popup');
 
 imageFormAdd.addEventListener('submit', e=>{
   e.preventDefault();
@@ -34,12 +35,23 @@ const nameInput = popupEditUser.querySelector('.popup__info_user_name');
 const jobInput = popupEditUser.querySelector('.popup__info_user_info');
 const userEditForm = popupEditUser.querySelector('form');
 
-const handleEscKeyup = (event) => {  
+const handleEscKeyup = (event) => {
   if (event.key === 'Escape') {
     const activePopup = document.querySelector('.popup_opened');
     closePopup(activePopup);
   }
 }
+
+popupList.forEach((popup) => {
+  popup.addEventListener('mousedown', (event) => {
+    if (event.target.classList.contains('popup_opened')) {
+      closePopup(popup);
+    }
+    if (event.target.classList.contains('popup__close')) {
+      closePopup(popup);
+    }
+  })
+})
 
 function createCard(item) {
   const card = cardTemplate.cloneNode(true);
@@ -86,7 +98,6 @@ function handleProfileFormSubmit (evt) {
   userName.textContent = nameInput.value;
   userInfo.textContent = jobInput.value;
   userEditForm.reset();
-
     
   closePopup(popupEditUser);    
 }
@@ -95,13 +106,13 @@ showImg.querySelector('.popup__close').addEventListener('click', event => {
   closePopup(showImg);
 });
 
-photoBtnAdd.addEventListener('click', () => openPopup(popupAddImg));
-
 profileEdit.addEventListener('click', () => {  
     nameInput.value = userName.textContent;
     jobInput.value = userInfo.textContent;
     openPopup(popupEditUser);
 });
+
+photoBtnAdd.addEventListener('click', () => openPopup(popupAddImg));
 
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 
@@ -110,3 +121,5 @@ profileClose.addEventListener('click', () => closePopup(popupEditUser));
 imageAddClose.addEventListener('click', () => closePopup(popupAddImg));
 
 document.addEventListener('keyup', handleEscKeyup);
+
+// enableValidation(formSetting);
