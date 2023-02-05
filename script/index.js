@@ -121,5 +121,3 @@ profileClose.addEventListener('click', () => closePopup(popupEditUser));
 imageAddClose.addEventListener('click', () => closePopup(popupAddImg));
 
 document.addEventListener('keyup', handleEscKeyup);
-
-// enableValidation(formSetting);
