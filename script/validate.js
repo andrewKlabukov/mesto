@@ -4,7 +4,7 @@ const formSettings = {
   submitButtonSelector: '.popup__button',
   inputErrorSelector: '.popup__input-error',
   inactiveButtonClass: 'popup__button_disabled',
-  errorVisibilityClass: 'popup__input-error_active'
+  errorVisibilityClass: '.popup__input-error_active'
 }
 
 function enableValidation (popup, settings = formSettings){
