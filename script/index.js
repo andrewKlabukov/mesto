@@ -38,6 +38,8 @@ const userEditForm = popupEditUser.querySelector('form');
 const handleEscKeyup = (event) => {
   if (event.key === 'Escape') {
     const activePopup = document.querySelector('.popup_opened');
+    const form = activePopup.querySelector('form')
+    form.reset()
     closePopup(activePopup);
   }
 }
