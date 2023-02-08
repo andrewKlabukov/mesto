@@ -1,9 +1,0 @@
-.card__desc {
-  min-height: 79px;
-  background-color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-left: 20px;
-  padding-right: 20px;
-}

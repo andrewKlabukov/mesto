@@ -1,11 +1,7 @@
 .card {
-  max-width: 282px;
-  max-height: 361px;
-  object-fit: cover;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 3px;
-  overflow: hidden;
   position: relative;
+  font-size: 0;
+  background-color: var(--color-white);
+  border-radius: 10px;
+  overflow: hidden;
 }
