@@ -8,16 +8,16 @@ const inputEditFormList = Array.from(formEditProfile.querySelectorAll('.popup__i
 const inputName = formEditProfile.querySelector('.popup__input_type_name');
 const inputSignature = formEditProfile.querySelector('.popup__input_type_about');
 const addCardsBtn = document.querySelector('.profile__add-btn');
-const cardsPopup = document.querySelector('.popup[data-type="add-popup"]'),
-const formAddCard = document.forms['card-form'],
-const inputCardFormList = Array.from(formAddCard.querySelectorAll('.popup__input')),
-const btnSubmitCardForm = formAddCard.querySelector(formSetting.submitButtonSelector),
-const inputCardName = formAddCard.querySelector('.popup__input_type_name'),
-const inputCardLink = formAddCard.querySelector('.popup__input_type_about'),
-const cardsList = document.querySelector('.cards__list'),
-const cardsTemplate = document.querySelector('#card').content.querySelector('.card'),
-const imgPopup = document.querySelector('.popup[data-type="img-popup"]'),
-const imgPopupImage = imgPopup.querySelector('.popup__img'),
+const cardsPopup = document.querySelector('.popup[data-type="add-popup"]');
+const formAddCard = document.forms['card-form'];
+const inputCardFormList = Array.from(formAddCard.querySelectorAll('.popup__input'));
+const btnSubmitCardForm = formAddCard.querySelector(formSetting.submitButtonSelector);
+const inputCardName = formAddCard.querySelector('.popup__input_type_name');
+const inputCardLink = formAddCard.querySelector('.popup__input_type_about');
+const cardsList = document.querySelector('.cards__list');
+const cardsTemplate = document.querySelector('#card').content.querySelector('.card');
+const imgPopup = document.querySelector('.popup[data-type="img-popup"]');
+const imgPopupImage = imgPopup.querySelector('.popup__img');
 const imgPopupTitle = imgPopup.querySelector('.popup__title');
 
 function addDefaultCards(elements) {
