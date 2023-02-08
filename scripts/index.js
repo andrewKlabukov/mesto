@@ -1,26 +1,24 @@
-'use strict';
-
-const popupList = document.querySelectorAll('.popup'),
-      profileTitle = document.querySelector('.profile__title'),
-      profileSubtitle = document.querySelector('.profile__subtitle'),
-      editProfileBtn = document.querySelector('.profile__edit-btn'),
-      profilePopup = document.querySelector('.popup[data-type="edit-popup"]'),
-      formEditProfile = document.forms['profile-form'],
-      inputEditFormList = Array.from(formEditProfile.querySelectorAll('.popup__input')),
-      inputName = formEditProfile.querySelector('.popup__input_type_name'),
-      inputSignature = formEditProfile.querySelector('.popup__input_type_about'),
-      addCardsBtn = document.querySelector('.profile__add-btn'),
-      cardsPopup = document.querySelector('.popup[data-type="add-popup"]'),
-      formAddCard = document.forms['card-form'],
-      inputCardFormList = Array.from(formAddCard.querySelectorAll('.popup__input')),
-      btnSubmitCardForm = formAddCard.querySelector(formSetting.submitButtonSelector),
-      inputCardName = formAddCard.querySelector('.popup__input_type_name'),
-      inputCardLink = formAddCard.querySelector('.popup__input_type_about'),
-      cardsList = document.querySelector('.cards__list'),
-      cardsTemplate = document.querySelector('#card').content.querySelector('.card'),
-      imgPopup = document.querySelector('.popup[data-type="img-popup"]'),
-      imgPopupImage = imgPopup.querySelector('.popup__img'),
-      imgPopupTitle = imgPopup.querySelector('.popup__title');
+const popupList = document.querySelectorAll('.popup');
+const profileTitle = document.querySelector('.profile__title');
+const profileSubtitle = document.querySelector('.profile__subtitle');
+const editProfileBtn = document.querySelector('.profile__edit-btn');
+const profilePopup = document.querySelector('.popup[data-type="edit-popup"]');
+const formEditProfile = document.forms['profile-form'];
+const inputEditFormList = Array.from(formEditProfile.querySelectorAll('.popup__input'));
+const inputName = formEditProfile.querySelector('.popup__input_type_name');
+const inputSignature = formEditProfile.querySelector('.popup__input_type_about');
+const addCardsBtn = document.querySelector('.profile__add-btn');
+const cardsPopup = document.querySelector('.popup[data-type="add-popup"]'),
+const formAddCard = document.forms['card-form'],
+const inputCardFormList = Array.from(formAddCard.querySelectorAll('.popup__input')),
+const btnSubmitCardForm = formAddCard.querySelector(formSetting.submitButtonSelector),
+const inputCardName = formAddCard.querySelector('.popup__input_type_name'),
+const inputCardLink = formAddCard.querySelector('.popup__input_type_about'),
+const cardsList = document.querySelector('.cards__list'),
+const cardsTemplate = document.querySelector('#card').content.querySelector('.card'),
+const imgPopup = document.querySelector('.popup[data-type="img-popup"]'),
+const imgPopupImage = imgPopup.querySelector('.popup__img'),
+const imgPopupTitle = imgPopup.querySelector('.popup__title');
 
 function addDefaultCards(elements) {
   elements.forEach(({name, link}) => {
