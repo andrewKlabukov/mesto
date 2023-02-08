@@ -39,7 +39,7 @@ function getCard(name, link) {
 
   cardElement.querySelector('.card__title').textContent = name;
   cardImg.src = link;
-  cardImg.alt = `${name}.`;
+  cardImg.alt = `${name}`;
 
   cardDelete.addEventListener('click', () => deleteCard(cardDelete));
   cardLike.addEventListener('click', () => toggleCardLike(cardLike));
