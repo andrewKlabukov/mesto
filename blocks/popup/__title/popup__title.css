@@ -4,7 +4,7 @@
   font-size: 18px;
   line-height: 22px;
   font-weight: 900;
-  color: var(--color-black);
+  color: #000;
 }
 
 @media screen and (min-width: 768px) {

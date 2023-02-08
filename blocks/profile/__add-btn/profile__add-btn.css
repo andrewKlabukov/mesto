@@ -8,7 +8,7 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: 16px;
-  border: 2px solid var(--color-white);
+  border: 2px solid white;
   border-radius: 2px;
   cursor: pointer;
   transition: opacity .3s ease-in-out;
