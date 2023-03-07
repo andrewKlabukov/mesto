@@ -10,12 +10,10 @@ class FormValidator {
     this._form = document.querySelector(form);
   }
 
-  /**Функция валидации формы */
 enableValidation() {
   this._addInputListners();
 };
 
- /**Добавить класс ошибки */
   _showInputError(inputElement) {
     const errorElement = this._form.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.add(this._inputErrorClass);
@@ -23,7 +21,6 @@ enableValidation() {
     errorElement.textContent = inputElement.validationMessage;
   }
 
-  /**Снять класс ошибки */
   _hideInputError(inputElement) {
     const errorElement = this._form.querySelector(`#${inputElement.id}-error`);
     inputElement.classList.remove(this._errorClass);
@@ -31,7 +28,6 @@ enableValidation() {
     errorElement.textContent = "";
   }
 
-  /**Проверить валидность поля */
   _handleFormInput(inputElement) {
     if (!inputElement.validity.valid) {
       this._showInputError(inputElement);
@@ -40,7 +36,6 @@ enableValidation() {
   }
 }
 
-  /**Функция переключения кнопки сабмит */
   _toggleButton() {
     this._buttonSubmint = this._form.querySelector(this._submitButtonSelector);
     this._isFormValid = this._form.checkValidity();
@@ -48,7 +43,6 @@ enableValidation() {
     this._buttonSubmint.classList.toggle(this._inactiveButtonClass, !this._isFormValid);
   }
 
- /**Объявить функцию слушателей всех инпутов */
 _addInputListners() {
   this._toggleButton();
   this._inputList = this._form.querySelectorAll(this._inputSelector);
@@ -60,7 +54,6 @@ _addInputListners() {
   })
 };
 
-/**Сбросить валидацию после закрытия формы */
 clearValidationForm() {
   this._toggleButton();
   this._inputList.forEach((inputElement) => {

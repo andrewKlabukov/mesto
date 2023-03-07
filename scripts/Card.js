@@ -6,7 +6,6 @@ class Card {
     this._handleCardClic = handleCardClic;
   };
 
-  /**Получить шаблон */
   _getTemplate() {
     const cardElement = document
       .querySelector(this._templateSelector)
@@ -17,7 +16,6 @@ class Card {
     return cardElement;
   };
 
-  /**Сгенерировать карточку */
   generateCard() {
     this._cardElement = this._getTemplate();
     this._cardElementTitle = this._cardElement.querySelector('.element__title');
@@ -33,19 +31,15 @@ class Card {
     return this._cardElement;
   };
 
-  /** Функция лайк-дизлайка карточки */
   _likeCard() {
     this._cardElementLike.classList.toggle('element__button_active');
   };
 
-  /** Функция удаления карточки */
   _deliteCard() {
     this._cardElement.remove();
     this._cardElement = null;
   };
-
-
-  /**Слушатели событий */
+  
   _setEventListeners() {
     this._cardElementLike.addEventListener('click', () => this._likeCard());
     this._cardElementDel.addEventListener('click', () => this._deliteCard());
