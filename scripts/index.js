@@ -1,6 +1,6 @@
 import { FormValidator } from './FormValidator.js';
 import { Card } from './Card.js';
-import {initialCards, formValidationElements } from './utils.js';
+import {initialCards, formValidationSetup } from './utils.js';
 
 const popupProfile = document.querySelector('.popup_type_profile');
 const popupOpenEdit = document.querySelector('.profile__edit-buton');
@@ -115,8 +115,8 @@ const popupAddClosest = (evt) => {
   return evt.target.closest('.popup');
 };
 
-const validationFormProfile = new FormValidator(formValidationElements, '.popup__form_type_profile');
+const validationFormProfile = new FormValidator(formValidationSetup, '.popup__form_type_profile');
 validationFormProfile.enableValidation();
 
-const validationFormPlace = new FormValidator(formValidationElements, '.popup__form_type_place');
+const validationFormPlace = new FormValidator(formValidationSetup, '.popup__form_type_place');
 validationFormPlace.enableValidation();
