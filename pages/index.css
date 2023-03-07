@@ -1,14 +1,15 @@
 @import url(../vendor/normalize.css);
 @import url(../vendor/fonts/fonts.css);
 @import url(../blocks/page/page.css);
+
 @import url(../blocks/header/header.css);
 @import url(../blocks/logo/logo.css);
 @import url(../blocks/profile/profile.css);
 @import url(../blocks/profile/__avatar/profile__avatar.css);
-@import url(../blocks/profile-info/profile-info.css);
-@import url(../blocks/profile-info/__wrap/profile-info__wrap.css);
-@import url(../blocks/profile-info/__title/profile-info__title.css);
-@import url(../blocks/profile-info/__intro/profile-info__intro.css);
+@import url(../blocks/profile-desc/profile-desc.css);
+@import url(../blocks/profile-desc/__wrap/profile-desc__wrap.css);
+@import url(../blocks/profile-desc/__title/profile-desc__title.css);
+@import url(../blocks/profile-desc/__intro/profile-desc__intro.css);
 @import url(../blocks/profile/__edit-buton/profile__edit-buton.css);
 @import url(../blocks/profile/__add-button/profile__add-button.css);
 @import url(../blocks/elements/elements.css);

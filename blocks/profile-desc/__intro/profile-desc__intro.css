@@ -1,4 +1,4 @@
-.profile-info__intro {
+.profile-desc__intro {
   margin: 0;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-weight: 400;
@@ -12,14 +12,14 @@
 }
 
 @media screen and (max-width: 700px) {
-  .profile-info__intro {
+  .profile-desc__intro {
     font-size: 14px;
     line-height: 17px;
   }
 }
 
 @media screen and (max-width: 600px) {
-  .profile-info__intro {
+  .profile-desc__intro {
     text-align: center;
     max-width: 189px;
   }

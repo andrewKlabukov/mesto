@@ -25,7 +25,7 @@ const initialCards = [
   }
 ];
 
-const formValidationConfig = {
+const formValidationElements = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
@@ -34,4 +34,4 @@ const formValidationConfig = {
   errorClass: 'popup__error_visible'
 }
 
-export { initialCards, formValidationConfig };
+export { initialCards, formValidationElements };
