@@ -1,6 +1,6 @@
-import { FormValidator } from './FormValidator.js';
+import { FormValidator, enableValidation } from './FormValidator.js';
 import { Card } from './Card.js';
-import {initialCards, formValidationSetup } from './utils.js';
+import { initialCards } from './constants.js';
 
 const popupProfile = document.querySelector('.popup_type_profile');
 const popupOpenEdit = document.querySelector('.profile__edit-buton');
@@ -88,10 +88,9 @@ popups.forEach((item) => {
   });
 });
 
-popupOpenAdd.addEventListener('click', () => {
+popupOpenAdd.addEventListener('click', (evt) => {
   openPopup(popupPlace);
-  popupFormTitle.value = '';
-  popupFormLink.value = '';
+  popupFormPlace.reset();
   validationFormPlace.clearValidationForm();
 });
 
@@ -103,7 +102,7 @@ popupFormPlace.addEventListener('submit', (evt) => {
     link: popupFormLink.value,
   });
 
-  evt.target.reset();
+ 
   closePopup(popupPlace);
 });
 
@@ -115,8 +114,8 @@ const popupAddClosest = (evt) => {
   return evt.target.closest('.popup');
 };
 
-const validationFormProfile = new FormValidator(formValidationSetup, '.popup__form_type_profile');
+const validationFormProfile = new FormValidator(enableValidation, '.popup__form_type_profile');
 validationFormProfile.enableValidation();
 
-const validationFormPlace = new FormValidator(formValidationSetup, '.popup__form_type_place');
+const validationFormPlace = new FormValidator(enableValidation, '.popup__form_type_place');
 validationFormPlace.enableValidation();

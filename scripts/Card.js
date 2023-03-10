@@ -1,9 +1,9 @@
 class Card {
-  constructor(card, templateSelector, handleCardClic) {
+  constructor(card, templateSelector, handleCardClick) {
     this._name = card.name;
     this._link = card.link;
     this._templateSelector = templateSelector;
-    this._handleCardClic = handleCardClic;
+    this._handleCardClick = handleCardClick;
   };
 
   _getTemplate() {
@@ -25,6 +25,7 @@ class Card {
 
     this._cardElementTitle.textContent = this._name;
     this._cardElementPhoto.src = this._link;
+    this._cardElementPhoto.alt = this._name;
 
     this._setEventListeners();
 
@@ -35,7 +36,7 @@ class Card {
     this._cardElementLike.classList.toggle('element__button_active');
   };
 
-  _deliteCard() {
+  _deleteCard() {
     this._cardElement.remove();
     this._cardElement = null;
   };
@@ -44,7 +45,7 @@ class Card {
     this._cardElementLike.addEventListener('click', () => this._likeCard());
     this._cardElementDel.addEventListener('click', () => this._deliteCard());
     this._cardElementPhoto.addEventListener('click', () =>
-      this._handleCardClic({
+      this._handleCardClick({
         link: this._link,
         name: this._name,
       }));

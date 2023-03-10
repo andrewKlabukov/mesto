@@ -1,3 +1,12 @@
+const enableValidation = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+}
+
 class FormValidator {
   constructor(config, form){
     this._inputSelector = config.inputSelector;
@@ -8,6 +17,7 @@ class FormValidator {
     this._formSelector = config.formSelector;
     this._form = form;
     this._form = document.querySelector(form);
+    this._buttonSubmint = this._form.querySelector(this._submitButtonSelector);
   }
 
 enableValidation() {
@@ -36,8 +46,7 @@ enableValidation() {
   }
 }
 
-  _toggleButton() {
-    this._buttonSubmint = this._form.querySelector(this._submitButtonSelector);
+  _toggleButton() {    
     this._isFormValid = this._form.checkValidity();
     this._buttonSubmint.disabled = !this._isFormValid;
     this._buttonSubmint.classList.toggle(this._inactiveButtonClass, !this._isFormValid);
@@ -62,4 +71,4 @@ clearValidationForm() {
 }
 }
 
-export { FormValidator };
+export { FormValidator, enableValidation };
