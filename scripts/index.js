@@ -114,8 +114,8 @@ const popupAddClosest = (evt) => {
   return evt.target.closest('.popup');
 };
 
-const validationFormProfile = new FormValidator(enableValidation, '.popup__form_type_profile');
+const validationFormProfile = new FormValidator(enableValidation, popupFormProfile);
 validationFormProfile.enableValidation();
 
-const validationFormPlace = new FormValidator(enableValidation, '.popup__form_type_place');
+const validationFormPlace = new FormValidator(enableValidation, popupFormPlace);
 validationFormPlace.enableValidation();
