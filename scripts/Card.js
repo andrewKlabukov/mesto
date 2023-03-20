@@ -43,7 +43,7 @@ class Card {
   
   _setEventListeners() {
     this._cardElementLike.addEventListener('click', () => this._likeCard());
-    this._cardElementDel.addEventListener('click', () => this._deliteCard());
+    this._cardElementDel.addEventListener('click', () => this._deleteCard());
     this._cardElementPhoto.addEventListener('click', () =>
       this._handleCardClick({
         link: this._link,

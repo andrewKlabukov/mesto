@@ -1,6 +1,9 @@
 import { FormValidator, enableValidation } from './FormValidator.js';
 import { Card } from './Card.js';
 import { initialCards } from './constants.js';
+import { Section } from './Section.js';
+import { Popup } from './Popup.js';
+import { PopupWithImage } from './PopupWithImage.js';
 
 const popupProfile = document.querySelector('.popup_type_profile');
 const popupOpenEdit = document.querySelector('.profile__edit-buton');
@@ -21,43 +24,64 @@ const popupCloseList = document.querySelectorAll('.popup__button-close');
 const popups = document.querySelectorAll('.popup');
 const cardsContainer = document.querySelector('.elements');
 
+
 const createCard = (cardData) => {
   const card = new Card(cardData, '.template-card', handleCardClick);
 
   return card.generateCard();
 };
 
+const popupWithImage = new PopupWithImage();
+
+popupWithImage.open();
+
 const handleCardClick = (cardImage) => {
-  openPopup(popupImage);
+ popupWithImage.open();
 
   elementImage.src = cardImage.link;
   elementImage.alt = cardImage.alt;
   elementTitle.textContent = cardImage.name;
 }
 
-initialCards.forEach((cardData) => {
-  cardsContainer.append(createCard(cardData));
-});
+const cardSection = new Section({initialCards, renderer: renderCard}, '.elements');
 
-const openPopup = (popup) => {
-  popup.classList.add('popup_opened');
-  document.addEventListener('keydown', handleEscClosePopup);
-};
+function renderCard(card) {
+  const newCard = createCard(card);
+  cardSection.addItem(newCard);
+}
 
-const closePopup = (popup) => {
-  popup.classList.remove('popup_opened');
+function renderInitialCards(cards) {
+  cardSection.renderItems(cards);
+}
 
-  document.removeEventListener('keydown', handleEscClosePopup);
-};
+renderInitialCards(initialCards);
 
-const handleEscClosePopup = (evt) => {
-  if (evt.key === 'Escape') {
-    const popupClose = document.querySelector('.popup_opened');
-    closePopup(popupClose);
-  };
-};
+const popup = new Popup('.popup');
+
+// initialCards.forEach((cardData) => {
+//   cardsContainer.append(createCard(cardData));
+// });
+
+// const openPopup = (popup) => {
+//   popup.classList.add('popup_opened');
+//   document.addEventListener('keydown', handleEscClosePopup);
+// };
+
+// const closePopup = (popup) => {
+//   popup.classList.remove('popup_opened');
+
+//   document.removeEventListener('keydown', handleEscClosePopup);
+// };
+
+// const handleEscClosePopup = (evt) => {
+//   if (evt.key === 'Escape') {
+//     const popupClose = document.querySelector('.popup_opened');
+//     closePopup(popupClose);
+//   };
+// };
 
 popupOpenEdit.addEventListener('click', () => {
+  popup.open();
   openPopup(popupProfile);
   inputName.value = profileName.textContent;
   inputJob.value = profileJob.textContent;
@@ -70,28 +94,31 @@ popupFormProfile.addEventListener('submit', (evt) => {
   profileName.textContent = inputName.value;
   profileJob.textContent = inputJob.value;
 
-  closePopup(popupProfile);
+  //closePopup(popupProfile);
+  popup.close();
 });
 
 popupCloseList.forEach((item) => {
   item.addEventListener('click', (evt) => {
     const popupClosestCross = popupAddClosest(evt);
-    closePopup(popupClosestCross);
+    //closePopup(popupClosestCross);
+    popup.close()
   });
 });
 
-popups.forEach((item) => {
-  item.addEventListener('click', (evt) => {
-    if (evt.target === evt.currentTarget) {
-      closePopup(item);
-    };
-  });
-});
+// popups.forEach((item) => {
+//   item.addEventListener('click', (evt) => {
+//     if (evt.target === evt.currentTarget) {
+//       closePopup(item);
+//     };
+//   });
+// });
 
 popupOpenAdd.addEventListener('click', (evt) => {
-  openPopup(popupPlace);
-  popupFormPlace.reset();
-  validationFormPlace.clearValidationForm();
+  popup.open()
+  // openPopup(popupPlace);
+  // popupFormPlace.reset();
+  // validationFormPlace.clearValidationForm();
 });
 
 popupFormPlace.addEventListener('submit', (evt) => {
@@ -106,9 +133,9 @@ popupFormPlace.addEventListener('submit', (evt) => {
   closePopup(popupPlace);
 });
 
-const renderCard = (card) => {
-  cardsContainer.prepend(createCard(card));
-};
+// const renderCard = (card) => {
+//   cardsContainer.prepend(createCard(card));
+// };
 
 const popupAddClosest = (evt) => {
   return evt.target.closest('.popup');
