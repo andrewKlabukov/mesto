@@ -1,12 +1,12 @@
 import './index.css';
-import { FormValidator, enableValidation } from '../scripts/FormValidator.js';
-import { Card } from '../scripts/Card.js';
-import { initialCards } from '../scripts/constants.js';
-import { Section } from '../scripts/Section.js';
-import { Popup } from '../scripts/Popup.js';
-import { PopupWithImage } from '../scripts/PopupWithImage.js';
-import { PopupWithForm } from '../scripts/PopupWithForm.js';
-import { UserInfo } from '../scripts/UserInfo';
+import { FormValidator, enableValidation } from '../components/FormValidator.js';
+import { Card } from '../components/Card.js';
+import { initialCards } from '../components/constants.js';
+import { Section } from '../components/Section.js';
+import { Popup } from '../components/Popup.js';
+import { PopupWithImage } from '../components/PopupWithImage.js';
+import { PopupWithForm } from '../components/PopupWithForm.js';
+import { UserInfo } from '../components/UserInfo';
 
 const popupProfile = document.querySelector('.popup_type_profile');
 const popupOpenEdit = document.querySelector('.profile__edit-buton');
@@ -37,7 +37,7 @@ popupWithImage.setEventListeners()
 const handleCardClick = (cardImage) => popupWithImage.open(cardImage);
 
 // Контейнер карточек
-const cardSection = new Section({initialCards, renderer: renderCard}, '.elements');
+const cardSection = new Section({renderer: renderCard}, '.elements');
 
 // Отрисовка одной карточки
 function renderCard(card) {
