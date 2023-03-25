@@ -82,7 +82,7 @@ popupOpenEdit.addEventListener('click', () => {
 
 // Открытие модального окна аватара
 
-const popupWithEditAvatar = new PopupWithForm('.popup_type_delete-card', editProfileSubmitHandler)
+const popupWithEditAvatar = new PopupWithForm('.popup_type_avatar', editProfileSubmitHandler)
 
 popupAvatar.addEventListener('click', ()=> {
   popupWithEditAvatar.open();
