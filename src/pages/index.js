@@ -7,6 +7,8 @@ import { Popup } from '../components/Popup.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { UserInfo } from '../components/UserInfo';
+import { data } from 'autoprefixer';
+import { Api } from '../components/Api';
 
 const popupProfile = document.querySelector('.popup_type_profile');
 const popupOpenEdit = document.querySelector('.profile__edit-buton');
@@ -17,6 +19,7 @@ const popupPlace = document.querySelector('.popup_type_place');
 const popupOpenAdd = document.querySelector('.profile__add-button');
 const popupFormPlace = popupPlace.querySelector('.popup__form_type_place');
 const popupCloseList = document.querySelectorAll('.popup__button-close');
+const popupAvatar = document.querySelector('.profile__avatar');
 const popups = document.querySelectorAll('.popup');
 
 
@@ -76,6 +79,16 @@ popupOpenEdit.addEventListener('click', () => {
   validationFormProfile.clearValidationForm();
 });
 
+
+// Открытие модального окна аватара
+
+const popupWithEditAvatar = new PopupWithForm('.popup_type_delete-card', editProfileSubmitHandler)
+
+popupAvatar.addEventListener('click', ()=> {
+  popupWithEditAvatar.open();
+  
+})
+
 popupCloseList.forEach((item) => {
   item.addEventListener('click', (evt) => {
     const popupClosestCross = popupAddClosest(evt);    
@@ -109,3 +122,9 @@ validationFormProfile.enableValidation();
 
 const validationFormPlace = new FormValidator(enableValidation, popupFormPlace);
 validationFormPlace.enableValidation();
+
+
+
+const api = new Api();
+
+api.getInitialCards();
