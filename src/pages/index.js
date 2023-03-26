@@ -1,7 +1,7 @@
 import './index.css';
 import { FormValidator, enableValidation } from '../components/FormValidator.js';
 import { Card } from '../components/Card.js';
-import { initialCards } from '../components/constants.js';
+import { initialCards, address, token } from '../components/constants.js';
 import { Section } from '../components/Section.js';
 import { Popup } from '../components/Popup.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
@@ -21,11 +21,43 @@ const popupFormPlace = popupPlace.querySelector('.popup__form_type_place');
 const popupCloseList = document.querySelectorAll('.popup__button-close');
 const popupAvatar = document.querySelector('.profile__avatar');
 const popups = document.querySelectorAll('.popup');
+const api = new Api(address, token);
 
+const userInfo = new UserInfo({nameSelector:'.profile-desc__title', jobSelector:'.profile-desc__intro'})
+console.log(api.getInitialCards())
+console.log(api.getUserInfo())
+api.addNewCard()
+
+Promise.all([
+  api.getInitialCards(),
+  api.getUserInfo(),
+  //api.addNewCard()
+]).then(([cards, user])=> {
+  setInitialUserInfo(user);
+  renderInitialCards(cards);  
+  console.log(user)
+    
+})
+
+function setInitialUserInfo(user) {
+  userInfo.setUserInfo(user)
+}
+
+function deleteCardHandler(card) {
+  
+  const cardId = card.getCardId()
+  api.delCard(cardId)
+    .then(() => {
+      card.removeCard()
+    })
+
+}
 
 // Создание новой карточки
 const createCard = (cardData) => {
-  const card = new Card(cardData, '.template-card', handleCardClick);
+  const userId = userInfo.getUserId();
+  console.log(userId);
+  const card = new Card(cardData, userId, '.template-card', handleCardClick, deleteCardHandler);
 
   return card.generateCard();
 };
@@ -54,7 +86,7 @@ function renderInitialCards(cards) {
 }
 
 // Отрисовка начальных карточек
-renderInitialCards(initialCards);
+//renderInitialCards(initialCards);
 
 // Модальное окно профиля
 const popupWithEditForm = new PopupWithForm('.popup_type_profile', editProfileSubmitHandler);
@@ -65,28 +97,26 @@ popupWithEditForm.setEventListeners();
 // Действие при сабмите модального окна Профиля
 function editProfileSubmitHandler(inputValues) {  
   userInfo.setUserInfo(inputValues);
+  
   popupWithEditForm.close()
+  console.log(inputValues)
 }
-
-const userInfo = new UserInfo({nameSelector:'.profile-desc__title', jobSelector:'.profile-desc__intro'})
 
 // Открытие модального окна Профиля
 popupOpenEdit.addEventListener('click', () => {
   popupWithEditForm.open();
   const user = userInfo.getUserInfo();
   inputName.value = user.name;
-  inputJob.value = user.job;  
+  inputJob.value = user.job;   
   validationFormProfile.clearValidationForm();
 });
 
-
 // Открытие модального окна аватара
-
 const popupWithEditAvatar = new PopupWithForm('.popup_type_avatar', editProfileSubmitHandler)
 
 popupAvatar.addEventListener('click', ()=> {
   popupWithEditAvatar.open();
-  
+     
 })
 
 popupCloseList.forEach((item) => {
@@ -96,11 +126,9 @@ popupCloseList.forEach((item) => {
 });
 
 function addSubmitHandler(inputValues) {
-  
-  renderCard({
-    name: inputValues.title,
-    link: inputValues.link
-  });  
+    
+  api.addNewCard({name: inputValues.title, link: inputValues.link})
+    .then(newCard => renderCard(newCard))  
   
   popupWithAddCard.close();
 }
@@ -122,9 +150,5 @@ validationFormProfile.enableValidation();
 
 const validationFormPlace = new FormValidator(enableValidation, popupFormPlace);
 validationFormPlace.enableValidation();
-
-
-
-const api = new Api();
 
 api.getInitialCards();

@@ -34,12 +34,7 @@ const enableValidation = {
   errorClass: 'popup__error_visible'
 }
 
-// const api = new Api({
-//   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-61',
-//   headers: {
-//     authorization: 'af74f13f-cd15-4606-af66-aedf471dfe51',
-//     'Content-Type': 'application/json'
-//   }
-// }); 
+const address = 'https://mesto.nomoreparties.co/v1/cohort-61';
+const token = 'af74f13f-cd15-4606-af66-aedf471dfe51';
 
-export { initialCards, enableValidation };
+export { initialCards, enableValidation, address, token };

@@ -8,11 +8,21 @@ export class UserInfo {
     return {
       name: this.name.textContent,
       job: this.job.textContent,
+      id: this.userId
     }
   }
 
-  setUserInfo({name, job}) {
-    this.name.textContent = name;
-    this.job.textContent = job;
+  setUserInfo(user) {
+    this.name.textContent = user.name;
+    this.job.textContent = user.about;
+    if (user._id) {
+      this.userId = user._id;      
+    }
+    
   }
+// получение нашего id
+  getUserId() {    
+    return this.userId
+  }
+
 }

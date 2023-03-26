@@ -1,28 +1,50 @@
 import { data } from "autoprefixer";
 
 class Api {
-  constructor(options) {
-    // тело конструктора
+  constructor(address, token) {
+    this.address = address;
+    this.token = token;    
   }
-
-  getInitialCards() {
-    return fetch('https://mesto.nomoreparties.co/v1/cohort-61/cards', {
-    headers: {
-      authorization: 'af74f13f-cd15-4606-af66-aedf471dfe51'
-    }
-  })
-    .then(res => {
-      if (res.ok) {        
-        return res.json();
+// запрос
+  _request(endpoint, method, body) {
+    const fetchInit = {
+      method: method,
+      headers: {
+        authorization: this.token,
+        'Content-Type': 'application/json',
       }
-      
-      return Promise.reject(`Ошибка: ${res.status}`);
-        
-    })
-    .then(data => console.log(data))
+    }
+
+    return fetch(`${this.address}/${endpoint}`, body
+      ? { ...fetchInit, body: JSON.stringify(body) }
+      : fetchInit
+    )
+    .then(this._handleResponse)
+  }
+// обработчик ответа
+  _handleResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка: ${res.status}`);
+  }
+// получаем массив карточек от сервера
+  getInitialCards() {
+    return this._request('cards', 'GET');
+  }
+// получаем информацию о пользователе от сервера
+  getUserInfo() {
+    return this._request('users/me', 'GET');
+  }
+// добавление новой карточки на сервер
+  addNewCard(newCard) {
+    return this._request('cards', 'POST', newCard)
   }
 
-  // другие методы работы с API
+  delCard(id) {
+    return this._request(`cards/${id}`, 'DELETE')
+  }
+
 }
 
 export { Api }
