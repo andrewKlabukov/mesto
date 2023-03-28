@@ -17,13 +17,14 @@ const popupFormProfile = popupProfile.querySelector('.popup__form_type_profile')
 const inputName = document.querySelector('.popup__input_type_name');
 const inputJob = document.querySelector('.popup__input_type_job');
 const popupPlace = document.querySelector('.popup_type_place');
+const popupPlaceAvatar = document.querySelector('.popup_type_avatar');
 const popupOpenAdd = document.querySelector('.profile__add-button');
 const popupFormPlace = popupPlace.querySelector('.popup__form_type_place');
 
 const popupCloseList = document.querySelectorAll('.popup__button-close');
 const popupSubmitButton = document.querySelectorAll('.popup__button');
 const popupAvatar = document.querySelector('.profile__avatar');
-//const popupFormAvatar = popupPlace.querySelector('.popup__form_type_avatar');
+const popupFormAvatar = popupPlaceAvatar.querySelector('.popup__form_type_avatar');
 const popups = document.querySelectorAll('.popup');
 const api = new Api(address, token);
 
@@ -68,11 +69,12 @@ popupWithImage.setEventListeners()
 const handleCardClick = (cardImage) => popupWithImage.open(cardImage);
 
 function likeHandler(card) {
+  console.log(card);
   const cardId = card.getCardId();
   const isLiked = card.getIsLiked();
   api.likeCard(cardId, isLiked)
     .then(res => {
-      card.updateLike(res.likes)       
+      card.updateLike(res.likes)           
     })
     .catch((err) => {
       console.log(err);
@@ -101,9 +103,16 @@ popupWithEditForm.setEventListeners();
 
 // Действие при сабмите модального окна Профиля
 function editProfileSubmitHandler(inputValues) {
-  console.log(inputValues)
-  userInfo.setUserInfo(inputValues);  
-  popupWithEditForm.close()
+  popupWithEditForm.isFetching(true);
+  api.updateUserInfo(inputValues)
+  .then(() => {
+    userInfo.setUserInfo(inputValues);   
+    popupWithEditForm.close()
+  })
+  .finally(() => {
+    popupWithEditForm.isFetching(false);
+  })
+  
 }
 
 // Открытие модального окна Профиля
@@ -125,11 +134,12 @@ function confirmSubmitHandler(card) {
     api.delCard(cardId)
       .then(() => {      
         card.removeCard()
-        popupWithConfirm.close()      
-      })
+        popupWithConfirm.close();      
+      })      
       .catch((err) => {
         console.log(err);
       })
+      
   }
 }
 
@@ -151,31 +161,41 @@ popupAvatar.addEventListener('click', ()=> {
   
 })
 popupWithEditAvatar.setEventListeners();
-function editAvatarSubmitHandler(avatar) {
-  api.updateAvatar({avatar: avatar.link})
+function editAvatarSubmitHandler(inputValue) {
+  popupWithEditAvatar.isFetching(true);
+  api.updateAvatar({avatar: inputValue.avatar})
   .then(res => {
     userInfo.setUserInfo(res);
     popupWithEditAvatar.close();
   })
   .catch((err) => {
     console.log(err);
-  })  
+  })
+  .finally(() => {
+    popupWithEditAvatar.isFetching(false);
+  })
 }
 
 function addSubmitHandler(inputValues) {
-    
+  popupWithAddCard.isFetching(true)
   api.addNewCard({name: inputValues.title, link: inputValues.link})
-    .then(newCard => renderCard(newCard)
-    )
+
+    .then(newCard => {
+      renderCard(newCard)
+      popupWithAddCard.close();
+    })
     .catch((err) => {
       console.log(err);
-    })  
+    })
+    .finally(() => {
+      popupWithAddCard.isFetching(false);
+    })
 }
 
 const popupWithAddCard = new PopupWithForm('.popup_type_place', addSubmitHandler);
 popupWithAddCard.setEventListeners();
 
-popupOpenAdd.addEventListener('click', (evt) => {  
+popupOpenAdd.addEventListener('click', (evt) => { 
   popupWithAddCard.open();
   validationFormPlace.clearValidationForm();
 });
@@ -186,7 +206,7 @@ validationFormProfile.enableValidation();
 const validationFormPlace = new FormValidator(enableValidation, popupFormPlace);
 validationFormPlace.enableValidation();
 
-// const validationFormAvatar = new FormValidator(enableValidation, popupFormAvatar);
-// validationFormAvatar.enableValidation();
+const validationFormAvatar = new FormValidator(enableValidation, popupFormAvatar);
+validationFormAvatar.enableValidation();
 
 api.getInitialCards();

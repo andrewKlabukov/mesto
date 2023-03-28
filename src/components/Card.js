@@ -26,12 +26,8 @@ class Card {
     return cardElement;
   };
 
-  _updateLikes(likes) {
-    this._cardElement.querySelector('.element__button-counter').textContent = likes.length;    
-  }
-
   generateCard() {
-    this._cardElement = this._getTemplate();
+    this._cardElement = this._getTemplate();    
     this._cardElementTitle = this._cardElement.querySelector('.element__title');
     this._cardElementPhoto = this._cardElement.querySelector('.element__img');
     this._cardElementLike = this._cardElement.querySelector('.element__button');
@@ -41,8 +37,7 @@ class Card {
       
       this._cardElementDel.style = 'display: none'
     }
-
-    this._updateLikes(this._likes)
+    this.updateLike(this._likes)
     this._cardElementTitle.textContent = this._name;
     this._cardElementPhoto.src = this._link;
     this._cardElementPhoto.alt = this._name;

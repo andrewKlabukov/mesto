@@ -52,6 +52,9 @@ class Api {
     isLiked? 'DELETE' : 'PUT'
     )
   }
+  updateUserInfo(userInfo) {
+    return this._request('users/me', 'PATCH', userInfo)
+  } 
 }
 
 export { Api }

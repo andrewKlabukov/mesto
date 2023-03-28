@@ -18,8 +18,10 @@ export class UserInfo {
     this.job.textContent = user.about;
     if (user._id) {
       this.userId = user._id;      
-    }
-    this.avatar.src = user.avatar;    
+    }    
+    if (user.avatar) {
+      this.avatar.src = user.avatar;
+    }  
   }
 // получение нашего id
   getUserId() {    
