@@ -53,8 +53,7 @@ function deleteCardHandler(card) {
 
 // Создание новой карточки
 const createCard = (cardData) => {
-  const userId = userInfo.getUserId();
-  console.log(userId);
+  const userId = userInfo.getUserId(); 
   const card = new Card(cardData, userId, '.template-card', handleCardClick, deleteCardHandler, likeHandler);
 
   return card.generateCard();
@@ -106,8 +105,7 @@ popupWithEditForm.setEventListeners();
 function editProfileSubmitHandler(inputValues) {  
   userInfo.setUserInfo(inputValues);
   
-  popupWithEditForm.close()
-  console.log(inputValues)
+  popupWithEditForm.close() 
 }
 
 // Открытие модального окна Профиля
@@ -143,8 +141,6 @@ popupCloseList.forEach((item) => {
 const popupAddClosest = (evt) => {
   return evt.target.closest('.popup');
 };
-
-console.log(popupCloseList)
 
 // Открытие модального окна аватара
 const popupWithEditAvatar = new PopupWithForm('.popup_type_avatar', editAvatarSubmitHandler)

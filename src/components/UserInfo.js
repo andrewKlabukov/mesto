@@ -19,8 +19,7 @@ export class UserInfo {
     if (user._id) {
       this.userId = user._id;      
     }
-    this.avatar.src = user.avatar;
-    console.log(this.avatar)
+    this.avatar.src = user.avatar;    
   }
 // получение нашего id
   getUserId() {    
