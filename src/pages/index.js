@@ -19,9 +19,11 @@ const inputJob = document.querySelector('.popup__input_type_job');
 const popupPlace = document.querySelector('.popup_type_place');
 const popupOpenAdd = document.querySelector('.profile__add-button');
 const popupFormPlace = popupPlace.querySelector('.popup__form_type_place');
+
 const popupCloseList = document.querySelectorAll('.popup__button-close');
+const popupSubmitButton = document.querySelectorAll('.popup__button');
 const popupAvatar = document.querySelector('.profile__avatar');
-//const popupDeleteImg = document.querySelector('.popup_type_delete-card');
+//const popupFormAvatar = popupPlace.querySelector('.popup__form_type_avatar');
 const popups = document.querySelectorAll('.popup');
 const api = new Api(address, token);
 
@@ -30,32 +32,29 @@ const userInfo = new UserInfo({nameSelector:'.profile-desc__title', jobSelector:
 Promise.all([
   api.getInitialCards(),
   api.getUserInfo(),
-  //api.addNewCard()
+
+  
 ]).then(([cards, user])=> {
   setInitialUserInfo(user);
-  renderInitialCards(cards);      
+  renderInitialCards(cards);
+  
 })
+  .catch((err) => {
+    console.log(err);
+  })
 
 function setInitialUserInfo(user) {
   userInfo.setUserInfo(user)
 }
 
 function deleteCardHandler(card) {
-  popupWithConfirm.open(card);
-  
-  // const cardId = card.getCardId()
-  // api.delCard(cardId)
-  //   .then(() => {      
-  //     card.removeCard()
-  //   })
-
+  popupWithConfirm.open(card);  
 }
 
 // Создание новой карточки
 const createCard = (cardData) => {
   const userId = userInfo.getUserId(); 
-  const card = new Card(cardData, userId, '.template-card', handleCardClick, deleteCardHandler, likeHandler);
-
+  const card = new Card(cardData, userId, '.template-card', handleCardClick, deleteCardHandler, likeHandler);  
   return card.generateCard();
 };
 
@@ -73,8 +72,10 @@ function likeHandler(card) {
   const isLiked = card.getIsLiked();
   api.likeCard(cardId, isLiked)
     .then(res => {
-      card.updateLike(res.likes);
-
+      card.updateLike(res.likes)       
+    })
+    .catch((err) => {
+      console.log(err);
     })
 }
 
@@ -92,9 +93,6 @@ function renderInitialCards(cards) {
   cardSection.renderItems(cards);
 }
 
-// Отрисовка начальных карточек
-//renderInitialCards(initialCards);
-
 // Модальное окно профиля
 const popupWithEditForm = new PopupWithForm('.popup_type_profile', editProfileSubmitHandler);
 
@@ -102,10 +100,10 @@ const popupWithEditForm = new PopupWithForm('.popup_type_profile', editProfileSu
 popupWithEditForm.setEventListeners();
 
 // Действие при сабмите модального окна Профиля
-function editProfileSubmitHandler(inputValues) {  
-  userInfo.setUserInfo(inputValues);
-  
-  popupWithEditForm.close() 
+function editProfileSubmitHandler(inputValues) {
+  console.log(inputValues)
+  userInfo.setUserInfo(inputValues);  
+  popupWithEditForm.close()
 }
 
 // Открытие модального окна Профиля
@@ -127,7 +125,10 @@ function confirmSubmitHandler(card) {
     api.delCard(cardId)
       .then(() => {      
         card.removeCard()
-        popupWithConfirm.close()
+        popupWithConfirm.close()      
+      })
+      .catch((err) => {
+        console.log(err);
       })
   }
 }
@@ -143,9 +144,11 @@ const popupAddClosest = (evt) => {
 };
 
 // Открытие модального окна аватара
-const popupWithEditAvatar = new PopupWithForm('.popup_type_avatar', editAvatarSubmitHandler)
+const popupWithEditAvatar = new PopupWithForm('.popup_type_avatar', editAvatarSubmitHandler);
+
 popupAvatar.addEventListener('click', ()=> {
   popupWithEditAvatar.open();
+  
 })
 popupWithEditAvatar.setEventListeners();
 function editAvatarSubmitHandler(avatar) {
@@ -153,15 +156,20 @@ function editAvatarSubmitHandler(avatar) {
   .then(res => {
     userInfo.setUserInfo(res);
     popupWithEditAvatar.close();
+  })
+  .catch((err) => {
+    console.log(err);
   })  
 }
 
 function addSubmitHandler(inputValues) {
     
   api.addNewCard({name: inputValues.title, link: inputValues.link})
-    .then(newCard => renderCard(newCard))  
-  
-  popupWithAddCard.close();
+    .then(newCard => renderCard(newCard)
+    )
+    .catch((err) => {
+      console.log(err);
+    })  
 }
 
 const popupWithAddCard = new PopupWithForm('.popup_type_place', addSubmitHandler);
@@ -177,5 +185,8 @@ validationFormProfile.enableValidation();
 
 const validationFormPlace = new FormValidator(enableValidation, popupFormPlace);
 validationFormPlace.enableValidation();
+
+// const validationFormAvatar = new FormValidator(enableValidation, popupFormAvatar);
+// validationFormAvatar.enableValidation();
 
 api.getInitialCards();

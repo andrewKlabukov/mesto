@@ -68,9 +68,9 @@ class Card {
     }
   }
 
-  _likeCard() {
-    this._cardElementLike.classList.toggle('element__button_active');
-  };
+  // _likeCard() {
+  //   this._cardElementLike.classList.toggle('element__button_active');
+  // };
 
   removeCard() {
     this._cardElement.remove();
