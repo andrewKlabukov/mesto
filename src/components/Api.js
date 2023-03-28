@@ -44,7 +44,14 @@ class Api {
   delCard(id) {
     return this._request(`cards/${id}`, 'DELETE')
   }
-
+  updateAvatar(avatar) {
+    return this._request('users/me/avatar', 'PATCH', avatar)
+  }
+  likeCard(cardId, isLiked) {
+    return this._request(`cards/${cardId}/likes`, 
+    isLiked? 'DELETE' : 'PUT'
+    )
+  }
 }
 
 export { Api }

@@ -17,8 +17,9 @@ module.exports = {
 		static: path.resolve(__dirname, './dist'),
 		compress: true,
 		port: 8080,
-		open: true
+		open: true,		
 	},
+	devtool: 'source-map',
 	module: {
 		rules: [ // rules — это массив правил
 			// добавим в него объект правил для бабеля

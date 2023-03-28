@@ -1,7 +1,8 @@
 export class UserInfo {
-  constructor({nameSelector, jobSelector}) {
+  constructor({nameSelector, jobSelector, avatarSelector}) {
     this.name = document.querySelector(nameSelector);
     this.job = document.querySelector(jobSelector);
+    this.avatar = document.querySelector(avatarSelector);
   }
 
   getUserInfo() {
@@ -18,7 +19,8 @@ export class UserInfo {
     if (user._id) {
       this.userId = user._id;      
     }
-    
+    this.avatar.src = user.avatar;
+    console.log(this.avatar)
   }
 // получение нашего id
   getUserId() {    

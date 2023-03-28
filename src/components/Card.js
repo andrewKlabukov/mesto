@@ -1,5 +1,5 @@
 class Card {
-  constructor(card, currentUserId, templateSelector, handleCardClick, deleteHandler) {
+  constructor(card, currentUserId, templateSelector, handleCardClick, deleteHandler, likeHandler) {
     this._name = card.name;
     this._link = card.link;
     this._templateSelector = templateSelector;
@@ -9,6 +9,7 @@ class Card {
     this._likes = card.likes;
     this._deleteHandler = deleteHandler;
     this._cardId = card._id;
+    this._likeHandler = likeHandler;
   };
 
   getCardId() {
@@ -51,6 +52,22 @@ class Card {
     return this._cardElement;
   };
 
+  getIsLiked() {
+    return this._likes.some((user)=>{
+      return user._id === this._currentUserId;
+    })
+  }
+
+  updateLike(likes) {
+    this._likes = likes;
+    this._cardElement.querySelector('.element__button-counter').textContent = likes.length;
+    if (this.getIsLiked()) {
+      this._cardElementLike.classList.add('element__button_active')
+    } else {
+    this._cardElementLike.classList.remove('element__button_active')
+    }
+  }
+
   _likeCard() {
     this._cardElementLike.classList.toggle('element__button_active');
   };
@@ -61,7 +78,7 @@ class Card {
   };
   
   _setEventListeners() {
-    this._cardElementLike.addEventListener('click', () => this._likeCard());
+    this._cardElementLike.addEventListener('click', () => this._likeHandler(this));
     this._cardElementDel.addEventListener('click', () => this._deleteHandler(this));
     this._cardElementPhoto.addEventListener('click', () =>
       this._handleCardClick({
