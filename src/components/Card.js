@@ -32,6 +32,7 @@ class Card {
     this._cardElementPhoto = this._cardElement.querySelector('.element__img');
     this._cardElementLike = this._cardElement.querySelector('.element__button');
     this._cardElementDel = this._cardElement.querySelector('.element__basket');
+    this._cardElementCounter = this._cardElement.querySelector('.element__button-counter');
     
     if(this._ownerId !== this._currentUserId) {
       
@@ -55,17 +56,13 @@ class Card {
 
   updateLike(likes) {
     this._likes = likes;
-    this._cardElement.querySelector('.element__button-counter').textContent = likes.length;
+    this._cardElementCounter.textContent = likes.length;
     if (this.getIsLiked()) {
       this._cardElementLike.classList.add('element__button_active')
     } else {
     this._cardElementLike.classList.remove('element__button_active')
     }
   }
-
-  // _likeCard() {
-  //   this._cardElementLike.classList.toggle('element__button_active');
-  // };
 
   removeCard() {
     this._cardElement.remove();

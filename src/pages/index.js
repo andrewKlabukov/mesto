@@ -3,7 +3,6 @@ import { FormValidator, enableValidation } from '../components/FormValidator.js'
 import { Card } from '../components/Card.js';
 import { initialCards, address, token } from '../components/constants.js';
 import { Section } from '../components/Section.js';
-import { Popup } from '../components/Popup.js';
 import { PopupWithImage } from '../components/PopupWithImage.js';
 import { PopupWithForm } from '../components/PopupWithForm.js';
 import { UserInfo } from '../components/UserInfo';
@@ -22,10 +21,8 @@ const popupOpenAdd = document.querySelector('.profile__add-button');
 const popupFormPlace = popupPlace.querySelector('.popup__form_type_place');
 
 const popupCloseList = document.querySelectorAll('.popup__button-close');
-const popupSubmitButton = document.querySelectorAll('.popup__button');
 const popupAvatar = document.querySelector('.profile__avatar');
 const popupFormAvatar = popupPlaceAvatar.querySelector('.popup__form_type_avatar');
-const popups = document.querySelectorAll('.popup');
 const api = new Api(address, token);
 
 const userInfo = new UserInfo({nameSelector:'.profile-desc__title', jobSelector:'.profile-desc__intro', avatarSelector: '#profile__avatar'})
@@ -68,8 +65,7 @@ popupWithImage.setEventListeners()
 // Клик на карточку
 const handleCardClick = (cardImage) => popupWithImage.open(cardImage);
 
-function likeHandler(card) {
-  console.log(card);
+function likeHandler(card) {  
   const cardId = card.getCardId();
   const isLiked = card.getIsLiked();
   api.likeCard(cardId, isLiked)
@@ -111,8 +107,7 @@ function editProfileSubmitHandler(inputValues) {
   })
   .finally(() => {
     popupWithEditForm.isFetching(false);
-  })
-  
+  })  
 }
 
 // Открытие модального окна Профиля
@@ -138,8 +133,7 @@ function confirmSubmitHandler(card) {
       })      
       .catch((err) => {
         console.log(err);
-      })
-      
+      })      
   }
 }
 
@@ -158,7 +152,7 @@ const popupWithEditAvatar = new PopupWithForm('.popup_type_avatar', editAvatarSu
 
 popupAvatar.addEventListener('click', ()=> {
   popupWithEditAvatar.open();
-  
+  validationFormAvatar.clearValidationForm();
 })
 popupWithEditAvatar.setEventListeners();
 function editAvatarSubmitHandler(inputValue) {

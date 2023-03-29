@@ -8,7 +8,8 @@ class FormValidator {
     this._inputErrorClass = config.inputErrorClass;
     this._errorClass = config.errorClass;
     this._formSelector = config.formSelector;
-    this._form = form;    
+    this._form = form;
+    this._buttonSubmit = this._form.querySelector(this._submitButtonSelector);
   }
 
 enableValidation() {
@@ -37,11 +38,10 @@ enableValidation() {
   }
 }
 
-  _toggleButton() {
-    this._buttonSubmint = this._form.querySelector(this._submitButtonSelector);   
+  _toggleButton() {       
     this._isFormValid = this._form.checkValidity();
-    this._buttonSubmint.disabled = !this._isFormValid;
-    this._buttonSubmint.classList.toggle(this._inactiveButtonClass, !this._isFormValid);
+    this._buttonSubmit.disabled = !this._isFormValid;
+    this._buttonSubmit.classList.toggle(this._inactiveButtonClass, !this._isFormValid);
   }
 
 _addInputListeners() {
